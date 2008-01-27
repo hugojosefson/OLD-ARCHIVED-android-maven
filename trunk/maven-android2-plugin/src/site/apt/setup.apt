@@ -1,0 +1,24 @@
+Android-Maven Setup
+
+
+  In order to use the maven plugin, you will need to have your POM pointing to the right plugin
+repository (so the plugin can be downloaded by Maven), and you will need to have an Android SDK installed.
+
+*  Getting the Plugin
+
+  Getting the plugin is simple.  You just need to add a new pluginRepository to your POM.  An example, using the
+repository from the android-maven project (a good one to start with ):
+
++--
+<pluginRepositories>
+    <pluginRepository>
+      <id>android-maven</id>
+      <url>http://android-maven.googlecode.com/svn/mavenrepo</url>
+    </pluginRepository>
+  </pluginRepositories>
++--
+
+
+ 
+
+   
