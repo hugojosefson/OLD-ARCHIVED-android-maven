@@ -24,14 +24,14 @@ import org.apache.maven.plugin.MojoFailureException;
  */
 public class EmulatorMojo extends AbstractAndroidMojo {
     
-    private static final String EMULATOR_COMMAND = 
-            ANDROID_PATH + File.separator + "tools" + File.separator + "emulator";
-    
+    private String command;    
     private Executor exec;
     
     public EmulatorMojo() {
-        super();
+        super();        
+        this.estCommand();
         exec =  new DefaultExecutor();
+
         //exec.setWorkingDirectory(new File("."));
         
         //Map env = new HashMap();
@@ -39,10 +39,23 @@ public class EmulatorMojo extends AbstractAndroidMojo {
         //exitValue = exec.execute(cl, env);
     }
     
+    private void estCommand()
+    {
+        try
+        {
+            command = this.getAndroidHome().getCanonicalPath() + File.separator + "tools" + File.separator + "emulator";
+        }
+        catch (IOException e)
+        {
+            // TODO handle this better
+            System.out.println(e.getStackTrace());
+        }
+    }
+    
     public void execute() throws MojoExecutionException, MojoFailureException {
         
        // use commons-exec to launch emulator
-        CommandLine cl = new CommandLine(EMULATOR_COMMAND);
+        CommandLine cl = new CommandLine(command);
         
         try
         {
