@@ -10,16 +10,15 @@ import org.apache.maven.project.MavenProjectHelper;
 /**
  * Properties for android-maven.
  * 
- * Goddammmit, can't find a mapping of what maven property is what,
- * not even in the "better builds" book, an appendix, nothing. 
- * What property is what in the "defaults" or standards?
- *
+ * Goddammmit, can't find a mapping of what maven property is what, not even in
+ * the "better builds" book, an appendix, nothing. What property is what in the
+ * "defaults" or standards?
+ * 
  * 
  * throw examples from the interwebs here - fuck it
  * 
- * ${project.build.outputDirectory}
- * ${project.build.testOutputDirectory}
- * ${project.build.directory}
+ * ${project.build.outputDirectory} ${project.build.testOutputDirectory}
+ * ${project.build.directory} = TARGET
  * 
  * 
  * 
@@ -28,36 +27,35 @@ import org.apache.maven.project.MavenProjectHelper;
 public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public static final String OS_NAME = System.getProperty("os.name").toLowerCase(Locale.US);
-    
+
     // GLOBAL PROPS
-    /** 
-     * Project instance, used to add new source directory to the build. 
-     * @parameter default-value="${project}" 
-     * @required 
-     * @readonly 
-     */ 
+    /**
+     * Project instance, used to add new source directory to the build.
+     * 
+     * @parameter default-value="${project}"
+     * @required
+     * @readonly
+     */
     private MavenProject project;
-    /** 
-     * project-helper instance, used to make addition of resources 
-     * simpler. 
-     * @component 
-     */ 
+    /**
+     * project-helper instance, used to make addition of resources simpler.
+     * 
+     * @component
+     */
     private MavenProjectHelper helper;
     /**
-     * @parameter expression="${pom.sourceDirectory}"
+     * @parameter expression="${project.build.sourceDirectory}"
      */
     private File srcDir;
     /**
      * @parameter expression="${project.build.directory}"
      */
     private File buildDir;
-    
-    
+
     /**
      * @parameter expression="${android.home}"
      */
     private File androidHome;
-   
 
     // TOOLS
     /**
@@ -88,15 +86,19 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     // INPUT/OUTPUT ASSETS
     /**
-     * @parameter expression="${project.build.directory}/res"
+     * @parameter expression="${basedir}/src/main/resources"
+     */
+    private File resourcesDir;
+    /**
+     * @parameter expression="${basedir}/src/main/resources/res"
      */
     private File resDir;
     /**
-     * @parameter expression="${project.build.directory}/assets"
+     * @parameter expression="${basedir}/src/main/resources/assets"
      */
-    private File assetDir;    
+    private File assetDir;
     /**
-     * @parameter expression="${project.build.directory}/classes.dex"
+     * @parameter expression="${basedir}/src/main/resources/classes.dex"
      */
     private File dexFile;
     /**
@@ -112,7 +114,7 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     /** Creates a new instance of AbstractAndroidMojo */
     public AbstractAndroidMojo() {
-    }    
+    }
 
     public File getAndroidHome() {
         return androidHome;
@@ -228,6 +230,14 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public void setBuildDir(File buildDir) {
         this.buildDir = buildDir;
+    }
+
+    public File getResourcesDir() {
+        return resourcesDir;
+    }
+
+    public void setResourcesDir(File resourcesDir) {
+        this.resourcesDir = resourcesDir;
     }
 
 }

@@ -1,0 +1,16 @@
+<!--  example Android profile, this file goes in ~/.m2/ -->
+<settings>
+	<profiles>
+		<profile>
+			<id>android-rc37a</id>
+			<properties>
+				<android.home>
+					/opt/android_sdk_darwin_m3-rc37a
+				</android.home>
+			</properties>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>android-rc37a</activeProfile>
+	</activeProfiles>
+</settings>

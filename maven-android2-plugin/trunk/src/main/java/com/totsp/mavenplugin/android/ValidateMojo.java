@@ -20,7 +20,7 @@ public class ValidateMojo extends AbstractAndroidMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
 
-        if (!this.getAndroidHome().exists()) {
+        if (this.getAndroidHome() == null || !this.getAndroidHome().exists()) {
             throw new MojoFailureException("Android SDK not found (did you define android.home in ~/.m2/settings.xml?)");
         }
 
