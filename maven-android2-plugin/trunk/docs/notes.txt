@@ -1,0 +1,33 @@
+Plugin Design Notes
+===================
+
+Either use the "ScriptWriter" approach as in GWT-Maven, or Commons-Exec. 
+Basically will have to invoke the android tools from Maven to gather things up, build, debug, etc. 
+
+Tasks to perform (separate Mojos?)
+-----------------------------------
+
+1. Generate R.java (aapt)
+aapt compile -m -j [SRC] -M AndroidManifest.xml -S [RES_DIR] -I android.jar
+
+
+2. Generate Java classes from .aidl files (aidl - optional)
+aidl [SRC_DIR]/**/*.aidl
+
+
+3. Java compile (javac)
+javac encoding=ascii target=1.5 debug=true src=[SRC] dest=[CLASSES] bootclasspath=android.jar
+
+
+4. Turn class files into DEX file (dx)
+dx -JXmx384M --dex --output=[CLASSES.DEX] --locals=full --positions=lines [CLASSES_DIR]
+
+
+5. Package Resources (aapt - assets are optional)
+aapt [packageName] -f -c -M AndroidManifest.xml -S [RES_DIR] -A [ASSET_DIR] -I android.jar [APK_FILE]
+
+
+6. Package DEX
+Zip (-qj) CLASSES.DEX and APK_FILE 
+
+
