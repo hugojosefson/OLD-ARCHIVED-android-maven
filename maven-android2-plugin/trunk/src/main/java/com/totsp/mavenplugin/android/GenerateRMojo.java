@@ -53,7 +53,7 @@ public class GenerateRMojo extends AbstractAndroidMojo {
         */
 
         if( !this.getOutput().exists() ){
-            this.getLog().info("creating output - " + this.getOutput().getCanonicalPath());
+            this.getLog().info("creating output - " + this.getOutput().getAbsolutePath());
             this.getOutput().mkdirs();
         }
         
