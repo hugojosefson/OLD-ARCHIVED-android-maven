@@ -34,7 +34,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler{
         writer.print(mojo.getDxTool().getCanonicalPath());        
         writer.print(" -Jmx383m");
         writer.print(" --dex");
-        writer.print(" --output " + mojo.getDexFileName());
+        writer.print(" --output=" + mojo.getDexFileDir().getAbsolutePath());
         writer.print(" --locals=full");
         writer.print(" --positions=lines");
         writer.print(" " + mojo.getBuildDir().getAbsolutePath());       
