@@ -7,20 +7,21 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * Run the android aapt tool to generate the R resource file.
+ * Run the android aapt tool to package resources.
  * 
- * @goal genr
- * @phase generate-sources
- * @description Generates the Android R.java resource file
+ * @goal packageres
+ * @phase prepare-package
+ * @requiresDependencyResolution compile
+ * @description Run the android aapt tool to package resources
  * 
  * @author charlie collins
  */
-public class GenerateRMojo extends AbstractAndroidMojo {
+public class PackageResMojo extends AbstractAndroidMojo {
 
     private AbstractScriptHandler handler;
     private boolean isUnix;
 
-    public GenerateRMojo() {
+    public PackageResMojo() {
         super();
 
         if (System.getProperty("os.name").toLowerCase(Locale.US).startsWith("windows")) {
@@ -48,7 +49,7 @@ public class GenerateRMojo extends AbstractAndroidMojo {
             // UNIX
             try {
                 ScriptHandlerUnix unixHandler = (ScriptHandlerUnix) handler;
-                File commandFile = unixHandler.writeRScript(this);
+                File commandFile = unixHandler.writePackageResScript(this);
                 unixHandler.runScriptUnix(commandFile, this);
             } catch (Exception e) {
                 this.getLog().error(e);

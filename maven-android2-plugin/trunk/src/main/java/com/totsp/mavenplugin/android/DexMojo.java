@@ -20,13 +20,13 @@ public class DexMojo extends AbstractAndroidMojo {
 
     private AbstractScriptHandler handler;
     private boolean isUnix;
-  
+
     public DexMojo() {
         super();
-        
-        if(System.getProperty("os.name").toLowerCase(Locale.US).startsWith("windows")) {            
+
+        if (System.getProperty("os.name").toLowerCase(Locale.US).startsWith("windows")) {
             this.getLog().info("os = WINDOWS");
-            //handler = new ScriptHandlerWindows();
+            // handler = new ScriptHandlerWindows();
         } else {
             this.getLog().info("os = UNIX (variant)");
             isUnix = true;
@@ -35,28 +35,27 @@ public class DexMojo extends AbstractAndroidMojo {
     }
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-        // dx -JXmx384M --dex --output=[CLASSES.DEX] --locals=full --positions=lines [CLASSES_DIR]
 
-        if( !this.getOutput().exists() ){
+        if (!this.getOutput().exists()) {
             this.getLog().info("creating output - " + this.getOutput().getAbsolutePath());
             this.getOutput().mkdirs();
         }
-        
-        if(!isUnix) {
+
+        if (!isUnix) {
             // WINDOWS
             // TODO windows
             throw new UnsupportedOperationException("Windows not yet supported");
         } else {
-            // UNIX            
-            try{
+            // UNIX
+            try {
                 ScriptHandlerUnix unixHandler = (ScriptHandlerUnix) handler;
                 File commandFile = unixHandler.writeDexScript(this);
-                unixHandler.runScriptUnix(commandFile, this); 
-            } catch(Exception e){
+                unixHandler.runScriptUnix(commandFile, this);
+            } catch (Exception e) {
                 this.getLog().error(e);
                 throw new MojoExecutionException(e.getLocalizedMessage());
             }
-        }         
-    }   
+        }
+    }
 
 }
