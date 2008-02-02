@@ -22,6 +22,9 @@ Modifiers:
     -R  specify directory containing generated resource files (in or output)
     -S  additional directory in which to find resource source assets
     -0  don't compress files we're adding
+    
+    
+--------------------------------------------------------------------------------
 
 DX
 dx
@@ -42,3 +45,68 @@ usage:
     Print the version of this tool (0.9).
   dx --help
     Print this message.
+    
+--------------------------------------------------------------------------------
+    
+EMUL
+Android Emulator usage:   emulator [options] [-qemu args]
+  options:
+    -system    <dir>   search system, ramdisk and userdata images in <dir>
+    -kernel    <file>  use <file> as the emulated kernel
+    -ramdisk   <file>  use <file> as the ramdisk image (default is <system>/ramdisk.img)
+    -image     <file>  use <file> as the system image (default is <system>/system.img)
+    -nand0     <file>  obsolete, same as -image
+    -data      <file>  use <file> as the working user data disk image
+    -nand1     <file>  obsolete, same as -data
+    -sdcard    <file>  use <file> as the SD card image (default is <system>/sdcard.img)
+    -skindir   <dir>   search skins in <dir>
+    -skin      <skin>  select a given skin
+    -noskin            don't use any emulator skin
+    -wipe-data         wipe all data on the user disk image before starting
+    -netspeed  <speed> set maximum network download/upload speeds (see below)
+    -netdelay  <delay> set network latency emulation
+    -netfast           disable network shaping (i.e. use full speed, no latency)
+    -verbose           enable verbose output
+    -trace     <name>  enable code profiling (press F9 to start)
+    -console           enable console shell on current terminal
+    -debug-kernel         send kernel output to the console
+    -nojni             disable JNI checks in the Dalvik runtime
+    -logcat    <logtags> enable logcat output with given tags
+    -noaudio           disable android audio support
+    -useaudio          enabled android audio support (default)
+    -mic       <device or file> device or WAV file for audio input
+    -flashkeys         flash key presses on the device skin
+    -verbose-keys         enable verbose key presses
+    -raw-keys          disable Unicode keyboard reverse-mapping
+    -radio     <device> redirect radio modem interface to a host character device
+    -onion     <image> use overlay image over screen
+    -onion-alpha <percentage> specify onion skin translucency (default 50)
+    -oldradio          enable old VM-based simulated radio
+    -version           display emulater version number
+
+    -qemu              pass arguments to qemu
+    -qemu -h           display qemu help
+    -help              print this help
+
+  The format of network <speed> is one of the following (numbers are kbits/s):
+    -netspeed gsm          GSM/CSD          (up: 14.4, down: 14.4)
+    -netspeed hscsd        HSCSD            (up: 14.4, down: 43.2)
+    -netspeed gprs         GPRS             (up: 40.0, down: 80.0)
+    -netspeed edge         EDGE/EGPRS       (up: 118.4, down: 236.8)
+    -netspeed umts         UMTS/3G          (up: 128.0, down: 1920.0)
+    -netspeed hsdpa        HSDPA            (up: 348.0, down: 14400.0)
+    -netspeed full         no limit         (up: 0.0, down: 0.0)
+    -netspeed <num>        select both upload and download speed
+    -netspeed <up>:<down>   select individual up and down speed
+
+  The format of network <delay> is one of the following (numbers are milliseconds):
+    -netdelay gprs         GPRS             (min 150, max 550)
+    -netdelay edge         EDGE/EGPRS       (min 80, max 400)
+    -netdelay umts         UMTS/3G          (min 35, max 200)
+    -netdelay none         no latency       (min 0, max 0)
+    -netdelay <num>        select exact latency
+    -netdelay <min>:<max>   select min and max latencies
+
+  Default network speed is 'full'
+  Default network latency is 'none'
+

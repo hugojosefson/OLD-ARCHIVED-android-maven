@@ -5,6 +5,7 @@ import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * @goal emul
+ * @phase 
  * 
  * @requiresDependencyResolution compile
  * @description Runs the Android emulator //@execute phase=package
@@ -21,7 +22,8 @@ public class EmulatorMojo extends AbstractAndroidMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
 
-        // removed commons exec, TODO replace with script writer stuff
+        // install and run the apk file 
+        // TODO
     }
 
 }
