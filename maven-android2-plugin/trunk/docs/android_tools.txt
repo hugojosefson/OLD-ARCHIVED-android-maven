@@ -1,0 +1,44 @@
+
+AAPT
+aapt package/compile/delete/add
+Modifiers:
+    -d  one or more device assets to include, separated by commas
+    -c  compile resources from assets
+    -f  force overwrite of existing files
+    -g  only write generated assets; do not package source assets
+    -j  specify a jar or zip file containing classes to include
+    -l  one or more locale assets to include, separated by commas
+    -m  make package directories under location specified by -J
+    -s  sync existing packages (update + remove deleted files)
+    -u  update existing packages (add new, replace older)
+    -v  verbose output
+    -x  create extending (non-application) resource IDs
+    -z  require localization of resource attributes marked with localization="suggested"
+    -A  additional directory in which to find raw asset files
+    -I  add an existing package to base include set
+    -J  specify where to output R.java resource constant definitions
+    -M  specify full path to AndroidManifest.xml to include in zip
+    -P  specify where to output public resource definitions
+    -R  specify directory containing generated resource files (in or output)
+    -S  additional directory in which to find resource source assets
+    -0  don't compress files we're adding
+
+DX
+dx
+usage:
+  dx --dex [--debug] [--verbose] [--positions=<style>] [--locals=<style>]
+  [--keep-classes] [--output=<file>] [--dump-to=<file>] [--dump-width=<n>]
+  [--dump-method=<name>[*]] [--verbose-dump] [--no-files]
+  [<file>.class | <file>.{zip,jar,apk} | <directory>] ...
+    Convert a set of classfiles into a dex file, optionally embedded in a
+    jar/zip. Output name must end with one of: .dex .jar .zip .apk. Positions
+    options: none, important, lines. Locals options: none, full.
+  dx --dump [--debug] [--strict] [--bytes] [--basic-blocks | --rop-blocks]
+  [--width=<n>] [<file>.class | <file>.txt] ...
+    Dump classfiles in a human-oriented format.
+  dx --junit [-wait] <TestClass>
+    Run the indicated unit test.
+  dx --version
+    Print the version of this tool (0.9).
+  dx --help
+    Print this message.
