@@ -8,7 +8,7 @@ import org.apache.maven.plugin.MojoFailureException;
 /**
  * Validate Android SDK is present and we are ready to roll.
  * 
- * @goal validate
+ * @phase validate
  * 
  * @author charlie collins
  */

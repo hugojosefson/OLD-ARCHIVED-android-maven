@@ -10,17 +10,6 @@ import org.apache.maven.project.MavenProjectHelper;
 /**
  * Properties for android-maven.
  * 
- * Goddammmit, can't find a mapping of what maven property is what, not even in
- * the "better builds" book, an appendix, nothing. What property is what in the
- * "defaults" or standards?
- * 
- * 
- * throw examples from the interwebs here - fuck it
- * 
- * ${project.build.outputDirectory} ${project.build.testOutputDirectory}
- * ${project.build.directory} = TARGET
- * 
- * 
  * 
  * @author charlie collins
  */
@@ -104,9 +93,9 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      */
     private File assetDir;
     /**
-     * @parameter expression="${basedir}/src/main/resources/classes.dex"
+     * @parameter expression="classes.dex"
      */
-    private File dexFile;
+    private String dexFileName;
     /**
      * @parameter expression="${project.build.directory}/${pom.artifactId}.apk"
      */
