@@ -1,0 +1,5 @@
+1. Figure out how to define own "packaging"
+2. Don't make the "jar", just make the apk
+3. Use the Maven built in project "artifact" stuff?
+
+later: added debugging, more tool options, etc
