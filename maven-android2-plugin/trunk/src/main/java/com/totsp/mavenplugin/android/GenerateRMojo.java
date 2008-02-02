@@ -66,8 +66,7 @@ public class GenerateRMojo extends AbstractAndroidMojo {
             try{
                 ScriptHandlerUnix unixHandler = (ScriptHandlerUnix) handler;
                 File commandFile = unixHandler.writeRScript(this);
-                unixHandler.runScriptUnix(commandFile); 
-                this.getLog().info("generate R complete");
+                unixHandler.runScriptUnix(commandFile, this); 
             } catch(Exception e){
                 this.getLog().error(e);
                 throw new MojoExecutionException(e.getLocalizedMessage());
