@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.totsp.gwt</groupId>
 	<artifactId>maven-android2-sample</artifactId>
+	<!--  TODO how to do custom packaging? -->
 	<packaging>jar</packaging>
 	<version>0.1</version>
 	<name>maven-android2-sample</name>
@@ -66,8 +67,8 @@
                 <executions>
                     <execution>
                         <goals>
-                          <goal>genr</goal>
-                          <goal>dex</goal>
+                          <goal>genr</goal>                          
+                          <goal>package</goal>
                        </goals>
                     </execution>
                 </executions>
