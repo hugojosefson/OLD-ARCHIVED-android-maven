@@ -111,6 +111,10 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      * @parameter expression="${project.build.directory}/${pom.artifactId}.apk"
      */
     private File apkArtifact;
+    /**
+     * @parameter expression="${basedir}/src/main/java"
+     */
+    private File targetRDir;
 
     // EMULATOR OPTIONS
     /**
@@ -252,6 +256,14 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public void setOutput(File output) {
         this.output = output;
+    }
+
+    public File getTargetRDir() {
+        return targetRDir;
+    }
+
+    public void setTargetRDir(File targetRDir) {
+        this.targetRDir = targetRDir;
     }
 
 }
