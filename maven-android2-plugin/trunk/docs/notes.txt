@@ -24,7 +24,7 @@ dx -JXmx384M --dex --output=[CLASSES.DEX] --locals=full --positions=lines [CLASS
 
 
 5. Package Resources (aapt - assets are optional)
-aapt [packageName] -f -c -M AndroidManifest.xml -S [RES_DIR] -A [ASSET_DIR] -I android.jar [APK_FILE]
+aapt package -f -c -M AndroidManifest.xml -S [RES_DIR] -A [ASSET_DIR] -I android.jar [APK_FILE]
 
 
 6. Package DEX
