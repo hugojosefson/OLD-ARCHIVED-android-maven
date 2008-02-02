@@ -37,7 +37,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler{
         writer.print(" --output=" + mojo.getDexFileDir().getAbsolutePath());
         writer.print(" --locals=full");
         writer.print(" --positions=lines");
-        writer.print(" " + mojo.getBuildDir().getAbsolutePath());       
+        writer.print(" " + mojo.getBuildDir().getAbsolutePath() + File.separator + "classes");       
         writer.println();
         
         writer.flush();
