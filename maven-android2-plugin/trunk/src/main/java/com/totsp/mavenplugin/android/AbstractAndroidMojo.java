@@ -95,11 +95,11 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
     /**
      * @parameter expression="${project.build.directory}/classes.dex"
      */
-    private File dexFileDir;
+    private File dexFile;
     /**
-     * @parameter expression="${project.build.directory}/${pom.artifactId}.apk"
+     * @parameter expression="${project.build.directory}/${project.artifactId}.apk"
      */
-    private File apkArtifact;
+    private String apkArtifactName;
     /**
      * @parameter expression="${basedir}/src/main/java"
      */
@@ -171,14 +171,6 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
         this.assetDir = assetDir;
     }
 
-    public File getApkArtifact() {
-        return apkArtifact;
-    }
-
-    public void setApkArtifact(File apkArtifact) {
-        this.apkArtifact = apkArtifact;
-    }
-
     public boolean isWipeData() {
         return wipeData;
     }
@@ -247,12 +239,20 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
         this.targetRDir = targetRDir;
     }
 
-    public File getDexFileDir() {
-        return this.dexFileDir;
+    public File getDexFile() {
+        return this.dexFile;
     }
 
-    public void setDexFileDir(File dexFileDir) {
-        this.dexFileDir = dexFileDir;
+    public void setDexFile(File dexFile) {
+        this.dexFile = dexFile;
+    }
+
+    public String getApkArtifactName() {
+        return apkArtifactName;
+    }
+
+    public void setApkArtifactName(String apkArtifactName) {
+        this.apkArtifactName = apkArtifactName;
     }
 
 }

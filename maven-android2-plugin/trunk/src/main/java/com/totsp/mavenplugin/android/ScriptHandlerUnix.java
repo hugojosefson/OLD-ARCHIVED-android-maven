@@ -30,13 +30,13 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         writer.println("#!" + sh.getAbsolutePath());
 
         writer.print(mojo.getAaptTool().getAbsolutePath());
-        writer.print(mojo.getApkArtifact().getName());
+        writer.print(" package");
         writer.print(" -f -c");
         writer.print(" -M " + mojo.getResourcesDir().getAbsolutePath() + "/AndroidManifest.xml");
         writer.print(" -S " + mojo.getResDir().getAbsolutePath());
         writer.print(" -A " + mojo.getAssetDir().getAbsolutePath());
         writer.print(" -I " + mojo.getAndroidJar().getAbsolutePath());
-        writer.print(" " + mojo.getApkArtifact().getAbsolutePath());
+        writer.print(" " + mojo.getApkArtifactName());
         
         writer.println();
 
@@ -63,7 +63,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         writer.print(mojo.getDxTool().getAbsolutePath());
         writer.print(" -Jmx383m");
         writer.print(" --dex");
-        writer.print(" --output=" + mojo.getDexFileDir().getAbsolutePath());
+        writer.print(" --output=" + mojo.getDexFile().getAbsolutePath());
         writer.print(" --locals=full");
         writer.print(" --positions=lines");
         writer.print(" " + mojo.getBuildDir().getAbsolutePath() + File.separator + "classes");
