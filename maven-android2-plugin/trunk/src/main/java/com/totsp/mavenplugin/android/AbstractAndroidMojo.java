@@ -52,10 +52,16 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      */
     private File buildDir;
 
+    // PROJECT PROPS
     /**
      * @parameter expression="${android.home}"
      */
     private File androidHome;
+    
+    /**
+     * @parameter expression="${project.build.directory}/${project.build.finalName}"
+     */
+    private File output;
 
     // TOOLS
     /**
@@ -238,6 +244,14 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public void setResourcesDir(File resourcesDir) {
         this.resourcesDir = resourcesDir;
+    }
+
+    public File getOutput() {
+        return output;
+    }
+
+    public void setOutput(File output) {
+        this.output = output;
     }
 
 }
