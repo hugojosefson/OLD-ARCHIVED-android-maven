@@ -64,30 +64,9 @@ public class ScriptHandlerUnix extends AbstractScriptHandler{
         if( !sh.exists() ){
             sh = new File("/bin/sh");
         }
-        writer.println("#!"+sh.getAbsolutePath());
+        writer.println("#!"+sh.getAbsolutePath());        
         
-        /*
-        writer.print( "CLASSPATH=");
-        for(File f : classpath ){
-            writer.print("\""+f.getAbsolutePath()+"\":");
-        }
-        writer.println();
-        writer.println("export CLASSPATH");
-        */
-        
-        /*
-        String extra = mojo.getExtraJvmArgs() != null ? mojo.getExtraJvmArgs() : "";
-        if (System.getProperty( "os.name" ).toLowerCase( Locale.US ).startsWith("mac")&&
-                    extra.indexOf("-XstartOnFirstThread") == -1 ) {
-            extra ="-XstartOnFirstThread "+extra;
-        }
-        */
-        
-        // aapt compile -m -j [SRC] -M AndroidManifest.xml -S [RES_DIR] -I
-        // android.jar        
-        
-        writer.print(mojo.getAaptTool().getCanonicalPath());
-        
+        writer.print(mojo.getAaptTool().getCanonicalPath());        
         writer.print(" compile");
         writer.print(" -m");
         writer.print(" -J " + mojo.getTargetRDir());
@@ -95,6 +74,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler{
         writer.print(" -S " + mojo.getResDir().getAbsolutePath());
         writer.print(" -I " + mojo.getAndroidJar().getAbsolutePath());       
         writer.println();
+        
         writer.flush();
         writer.close();        
         return file;
