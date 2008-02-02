@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.totsp.gwt</groupId>
 	<artifactId>maven-android2-sample</artifactId>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 	<version>0.1</version>
 	<name>maven-android2-sample</name>
 	<repositories>		
@@ -30,7 +30,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.google.android</groupId>
+			<groupId>com.google</groupId>
 			<artifactId>android</artifactId>
 			<version>m3-rc37a</version>
 		</dependency>
