@@ -4,5 +4,6 @@
 4. Look at multi module/project and res/source List stuff
 5. Add mojo tests
 6. Update the site style docs
+7. Add android.jar to the classpath via the mojo, not as a dep
 
 later: added debugging, more tool options, etc
