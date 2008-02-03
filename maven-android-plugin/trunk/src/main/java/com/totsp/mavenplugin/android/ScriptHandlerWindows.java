@@ -9,25 +9,17 @@ import java.io.PrintWriter;
  * 
  * @author ccollins
  */
-public class ScriptHandlerUnix extends AbstractScriptHandler {
+public class ScriptHandlerWindows extends AbstractScriptHandler {
 
-    public ScriptHandlerUnix() {
+    public ScriptHandlerWindows() {
         super();
     }
 
     @SuppressWarnings("static-access")
     public File writeInstallApkScript(AbstractAndroidMojo mojo) throws IOException {
-        String filename = "installapk.sh";
+        String filename = "installapk.cmd";
         File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));
-        File sh = new File("/bin/bash");
-        if (!sh.exists()) {
-            sh = new File("/usr/bin/bash");
-        }
-        if (!sh.exists()) {
-            sh = new File("/bin/sh");
-        }
-        writer.println("#!" + sh.getAbsolutePath());
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
 
         writer.print(mojo.getEmulTool().getAbsolutePath() + "&");
         writer.println();
@@ -45,17 +37,9 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
     
     @SuppressWarnings("static-access")
     public File writePackageResScript(AbstractAndroidMojo mojo) throws IOException {
-        String filename = "packageres.sh";
+        String filename = "packageres.cmd";
         File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));
-        File sh = new File("/bin/bash");
-        if (!sh.exists()) {
-            sh = new File("/usr/bin/bash");
-        }
-        if (!sh.exists()) {
-            sh = new File("/bin/sh");
-        }
-        writer.println("#!" + sh.getAbsolutePath());
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
 
         writer.print(mojo.getAaptTool().getAbsolutePath());
         writer.print(" package");
@@ -75,18 +59,9 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
 
     @SuppressWarnings("static-access")
     public File writeDexScript(AbstractAndroidMojo mojo) throws IOException {
-        String filename = "dex.sh";
+        String filename = "dex.cmd";
         File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));
-        // Collection<File> classpath = mojo.buildRuntimeClasspathList();
-        File sh = new File("/bin/bash");
-        if (!sh.exists()) {
-            sh = new File("/usr/bin/bash");
-        }
-        if (!sh.exists()) {
-            sh = new File("/bin/sh");
-        }
-        writer.println("#!" + sh.getAbsolutePath());
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
 
         writer.print(mojo.getDxTool().getAbsolutePath());
         writer.print(" -Jmx383m");
@@ -104,18 +79,10 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
 
     @SuppressWarnings("static-access")
     public File writeRScript(AbstractAndroidMojo mojo) throws IOException {
-        String filename = "genr.sh";
+        String filename = "genr.cmd";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));
-        File sh = new File("/bin/bash");
-        if (!sh.exists()) {
-            sh = new File("/usr/bin/bash");
-        }
-        if (!sh.exists()) {
-            sh = new File("/bin/sh");
-        }
-        writer.println("#!" + sh.getAbsolutePath());
-
+       
         writer.print(mojo.getAaptTool().getAbsolutePath());
         writer.print(" compile");
         writer.print(" -m");
