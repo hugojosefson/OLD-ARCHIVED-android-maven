@@ -1,6 +1,6 @@
 1. Figure out how to define own "packaging"
-2. Don't make the "jar", just make the apk
-3. Use the Maven built in project "artifact" stuff?
-4. Add windows support
+2. Don't make the "jar", just make the apk (manipulate artifact?)
+3. Add windows support
+4. Look at multi module/project and res/source List stuff
 
 later: added debugging, more tool options, etc
