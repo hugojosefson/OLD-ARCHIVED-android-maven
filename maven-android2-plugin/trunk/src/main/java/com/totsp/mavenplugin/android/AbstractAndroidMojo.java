@@ -42,14 +42,6 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      */
     private File buildDir;
 
-    /**
-     * @parameter expression="${project.build.directory}/${project.build.finalName}"
-     */
-    // /private File output;
-    /**
-     * @parameter expression="${basedir}/src/main/java"
-     */
-    // private File targetRDir;
     // PROJECT PROPS
     /**
      * @parameter expression="${android.home}"
@@ -58,28 +50,25 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     // TOOLS
     /**
-     * TODO - per platform version?
-     * 
      * @parameter expression="${android.home}/tools/aapt"
      */
     private File aaptTool;
     /**
-     * TODO - per platform version?
-     * 
      * @parameter expression="${android.home}/tools/aidl"
      */
     private File aidlTool;
     /**
-     * TODO - per platform version?
-     * 
      * @parameter expression="${android.home}/tools/dx"
      */
     private File dxTool;
     /**
-     * 
      * @parameter expression="${android.home}/tools/adb"
      */
-    private File adBTool;
+    private File adbTool;
+    /**
+     * @parameter expression="${android.home}/tools/emulator"
+     */
+    private File emulTool;
 
     // INPUT/OUTPUT ASSETS
     /**
@@ -183,12 +172,8 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
         this.dxTool = dxTool;
     }
 
-    public File getAdBTool() {
-        return adBTool;
-    }
-
-    public void setAdBTool(File adBTool) {
-        this.adBTool = adBTool;
+    public File getAdbTool() {
+        return this.adbTool;
     }
 
     public File getResDir() {
@@ -221,6 +206,18 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public void setApkArtifactName(String apkArtifactName) {
         this.apkArtifactName = apkArtifactName;
+    }
+
+    public void setAdbTool(File adbTool) {
+        this.adbTool = adbTool;
+    }
+
+    public File getEmulTool() {
+        return emulTool;
+    }
+
+    public void setEmulTool(File emulTool) {
+        this.emulTool = emulTool;
     }
 
 }

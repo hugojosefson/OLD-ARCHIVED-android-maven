@@ -31,7 +31,7 @@ public class EmulatorMojo extends AbstractAndroidMojo {
             try {
                 ScriptHandlerUnix unixHandler = (ScriptHandlerUnix) handler;
 
-                File commandFile = unixHandler.writeInstallScript(this);
+                File commandFile = unixHandler.writeInstallApkScript(this);
                 unixHandler.runScriptUnix(commandFile, this);
             } catch (Exception e) {
                 this.getLog().error(e);

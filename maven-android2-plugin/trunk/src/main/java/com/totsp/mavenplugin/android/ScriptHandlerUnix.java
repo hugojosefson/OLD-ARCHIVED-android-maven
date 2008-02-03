@@ -13,12 +13,35 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
 
     /** Creates a new instance of ScriptWriterUnix */
     public ScriptHandlerUnix() {
+        super();
     }
 
-
     @SuppressWarnings("static-access")
-    public File writeInstallScript(AbstractAndroidMojo mojo) throws IOException {
-        return null;
+    public File writeInstallApkScript(AbstractAndroidMojo mojo) throws IOException {
+        String filename = "installapk.sh";
+        File file = new File(mojo.getBuildDir(), filename);
+        PrintWriter writer = new PrintWriter(new FileWriter(file));
+        File sh = new File("/bin/bash");
+        if (!sh.exists()) {
+            sh = new File("/usr/bin/bash");
+        }
+        if (!sh.exists()) {
+            sh = new File("/bin/sh");
+        }
+        writer.println("#!" + sh.getAbsolutePath());
+
+        writer.print(mojo.getEmulTool().getAbsolutePath() + "&");
+        writer.println();
+        
+        writer.print(mojo.getAdbTool().getAbsolutePath());
+        writer.print(" wait-for-device install");       
+        writer.print(" " + mojo.getApkArtifactName());
+        
+        writer.println();
+
+        writer.flush();
+        writer.close();
+        return file;
     }
     
     @SuppressWarnings("static-access")
