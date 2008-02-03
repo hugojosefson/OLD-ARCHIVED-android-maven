@@ -1,9 +1,7 @@
-1. Figure out how to define own "packaging"
-2. Don't make the "jar", just make the apk (manipulate artifact?)
-3. Add windows support
-4. Look at multi module/project and res/source List stuff
-5. Add mojo tests
-6. Update the site style docs
-7. Add android.jar to the classpath via the mojo, not as a dep
+1. Add windows support
+2. Add android.jar to the classpath via the mojo, not as a dep
+3. Look at multi module/project and res/source List stuff
+4. Add mojo tests
+5. Update the site style docs
 
 later: added debugging, more tool options, etc
