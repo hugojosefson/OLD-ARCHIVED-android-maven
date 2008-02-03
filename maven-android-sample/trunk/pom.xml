@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.totsp.gwt</groupId>
-	<artifactId>maven-android2-sample</artifactId>
+	<artifactId>maven-android-sample</artifactId>
 	<!--  TODO how to do custom packaging? -->
 	<packaging>jar</packaging>
 	<version>0.1</version>
-	<name>maven-android2-sample</name>
+	<name>maven-android-sample</name>
 	<repositories>		
 		<repository>
 			<id>android-maven</id>
@@ -21,8 +21,7 @@
         <id>android-maven</id>
           <url>http://android-maven.googlecode.com/svn/mavenrepo/</url>
       </pluginRepository>      
-    </pluginRepositories>
-	
+    </pluginRepositories>	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -30,13 +29,13 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<!--  TODO get the android jar out of the pom, add it to cp with Mojos -->
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>android</artifactId>
 			<version>m3-rc37a</version>
 		</dependency>
-	</dependencies>
-	
+	</dependencies>	
 	<build>
 		<finalName>maven-android2-sample</finalName>
 		<plugins>
