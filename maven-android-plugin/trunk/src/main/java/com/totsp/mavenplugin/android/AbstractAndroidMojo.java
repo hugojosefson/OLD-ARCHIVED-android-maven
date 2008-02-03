@@ -1,9 +1,11 @@
 package com.totsp.mavenplugin.android;
 
 import java.io.File;
-import java.util.List;
 import java.util.Locale;
 
+import org.apache.maven.artifact.factory.ArtifactFactory;
+import org.apache.maven.artifact.repository.ArtifactRepository;
+import org.apache.maven.artifact.resolver.ArtifactResolver;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -31,32 +33,37 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      * @readonly
      */
     private MavenProject project;
-    /** 
-     * project-helper instance, used to make addition of resources 
-     * simpler. 
-     * @component 
-     */ 
-    private MavenProjectHelper helper; 
+    /**
+     * project-helper instance, used to make addition of resources simpler.
+     * 
+     * @component
+     */
+    private MavenProjectHelper helper;
+    /**
+     * @parameter expression="${plugin.artifacts}"
+     */
+    private java.util.List pluginArtifacts;
+    /**
+     * @parameter expression="${component.org.apache.maven.artifact.factory.ArtifactFactory}"
+     * @required
+     * @readonly
+     */
+    private ArtifactFactory artifactFactory;
+    /**    
+     * @component role="org.apache.maven.artifact.resolver.ArtifactResolver"
+     * @required
+     * @readonly
+     */
+    private ArtifactResolver artifactResolver;
+    /**     
+     * @parameter expression="${localRepository}"
+     * @required
+     */
+    private ArtifactRepository localRepository;
     /**
      * @parameter expression="${project.build.sourceDirectory}"
      */
     private File srcDir;
-    /** 
-     * List of source roots containing non-test code. 
-     * @parameter default-value="${project.compileSourceRoots}" 
-     * @required 
-     * @readonly 
-     */ 
-    private List sourceRoots; 
-    /** 
-     * List of Resource objects for the current build, containing 
-     * directory, includes, and excludes. 
-     * @parameter default-value="${project.resources}" 
-     * @required 
-     * @readonly 
-     */ 
-    private List resources; 
-
     /**
      * @parameter expression="${basedir}/src/main/resources"
      */
@@ -130,12 +137,36 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
         }
     }
 
+    public AbstractScriptHandler getHandler() {
+        return handler;
+    }
+
+    public void setHandler(AbstractScriptHandler handler) {
+        this.handler = handler;
+    }
+
     public MavenProject getProject() {
         return project;
     }
 
     public void setProject(MavenProject project) {
         this.project = project;
+    }
+
+    public MavenProjectHelper getHelper() {
+        return helper;
+    }
+
+    public void setHelper(MavenProjectHelper helper) {
+        this.helper = helper;
+    }
+
+    public java.util.List getPluginArtifacts() {
+        return pluginArtifacts;
+    }
+
+    public void setPluginArtifacts(java.util.List pluginArtifacts) {
+        this.pluginArtifacts = pluginArtifacts;
     }
 
     public File getSrcDir() {
@@ -195,7 +226,19 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
     }
 
     public File getAdbTool() {
-        return this.adbTool;
+        return adbTool;
+    }
+
+    public void setAdbTool(File adbTool) {
+        this.adbTool = adbTool;
+    }
+
+    public File getEmulTool() {
+        return emulTool;
+    }
+
+    public void setEmulTool(File emulTool) {
+        this.emulTool = emulTool;
     }
 
     public File getResDir() {
@@ -230,40 +273,28 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
         this.apkArtifactName = apkArtifactName;
     }
 
-    public void setAdbTool(File adbTool) {
-        this.adbTool = adbTool;
+    public ArtifactFactory getArtifactFactory() {
+        return artifactFactory;
     }
 
-    public File getEmulTool() {
-        return emulTool;
+    public void setArtifactFactory(ArtifactFactory artifactFactory) {
+        this.artifactFactory = artifactFactory;
     }
 
-    public void setEmulTool(File emulTool) {
-        this.emulTool = emulTool;
+    public ArtifactResolver getArtifactResolver() {
+        return artifactResolver;
     }
 
-    public MavenProjectHelper getHelper() {
-        return helper;
+    public void setArtifactResolver(ArtifactResolver artifactResolver) {
+        this.artifactResolver = artifactResolver;
     }
 
-    public void setHelper(MavenProjectHelper helper) {
-        this.helper = helper;
+    public ArtifactRepository getLocalRepository() {
+        return localRepository;
     }
 
-    public List getSourceRoots() {
-        return sourceRoots;
-    }
-
-    public void setSourceRoots(List sourceRoots) {
-        this.sourceRoots = sourceRoots;
-    }
-
-    public List getResources() {
-        return resources;
-    }
-
-    public void setResources(List resources) {
-        this.resources = resources;
+    public void setLocalRepository(ArtifactRepository localRepository) {
+        this.localRepository = localRepository;
     }
 
 }

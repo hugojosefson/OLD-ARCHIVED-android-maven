@@ -24,8 +24,7 @@ public class ValidateMojo extends AbstractAndroidMojo {
         if (this.getAndroidHome() == null || !this.getAndroidHome().exists()) {
             throw new MojoFailureException("Android SDK not found (did you define android.home in ~/.m2/settings.xml?)");
         }
-        
-        // TODO check all required params are present/rwable, etc
+        // TODO check all required params are present/rwable, etc        
 
         try {
             this.getLog().info("Found Android SDK - " + this.getAndroidHome().getCanonicalPath());
