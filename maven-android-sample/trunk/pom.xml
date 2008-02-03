@@ -60,6 +60,7 @@
             <plugin>
                 <groupId>com.totsp.gwt</groupId>
                 <artifactId>maven-android-plugin</artifactId>
+                <version>0.1-SNAPSHOT</version>
                 <configuration>
                     <!--  config items/values here -->
                 </configuration>
