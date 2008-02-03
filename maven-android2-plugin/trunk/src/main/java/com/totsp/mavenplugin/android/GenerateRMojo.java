@@ -1,7 +1,6 @@
 package com.totsp.mavenplugin.android;
 
 import java.io.File;
-import java.util.Locale;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -17,28 +16,12 @@ import org.apache.maven.plugin.MojoFailureException;
  */
 public class GenerateRMojo extends AbstractAndroidMojo {
 
-    private AbstractScriptHandler handler;
-    private boolean isUnix;
-
     public GenerateRMojo() {
         super();
-
-        if (System.getProperty("os.name").toLowerCase(Locale.US).startsWith("windows")) {
-            this.getLog().info("os = WINDOWS");
-            // handler = new ScriptHandlerWindows();
-        } else {
-            this.getLog().info("os = UNIX (variant)");
-            isUnix = true;
-            handler = new ScriptHandlerUnix();
-        }
     }
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-
-        if (this.getBuildDir() == null || !this.getBuildDir().exists()) {
-            this.getBuildDir().mkdirs();
-        }
-        
+        super.execute();
         if (!isUnix) {
             // WINDOWS
             // TODO windows

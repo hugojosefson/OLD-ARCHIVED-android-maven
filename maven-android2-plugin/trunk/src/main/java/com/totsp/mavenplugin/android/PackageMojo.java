@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -27,28 +26,12 @@ import org.apache.maven.plugin.MojoFailureException;
  */
 public class PackageMojo extends AbstractAndroidMojo {
 
-    private AbstractScriptHandler handler;
-    private boolean isUnix;
-
     public PackageMojo() {
         super();
-
-        if (System.getProperty("os.name").toLowerCase(Locale.US).startsWith("windows")) {
-            this.getLog().info("os = WINDOWS");
-            // handler = new ScriptHandlerWindows();
-        } else {
-            this.getLog().info("os = UNIX (variant)");
-            isUnix = true;
-            handler = new ScriptHandlerUnix();
-        }
     }
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-
-        if (this.getBuildDir() == null || !this.getBuildDir().exists()) {
-            this.getBuildDir().mkdirs();
-        }
-        
+        super.execute();        
         if (!isUnix) {
             // WINDOWS
             // TODO windows

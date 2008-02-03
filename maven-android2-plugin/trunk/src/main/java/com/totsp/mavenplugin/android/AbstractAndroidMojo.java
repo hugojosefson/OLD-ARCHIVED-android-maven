@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Locale;
 
 import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 
 /**
@@ -15,6 +17,8 @@ import org.apache.maven.project.MavenProject;
 public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public static final String OS_NAME = System.getProperty("os.name").toLowerCase(Locale.US);
+    protected AbstractScriptHandler handler;
+    protected boolean isUnix;
 
     // GLOBAL PROPS
     /**
@@ -26,11 +30,11 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      */
     private MavenProject project;
     /**
-     * @parameter expression="${project.build.sourceDirectory}" 
+     * @parameter expression="${project.build.sourceDirectory}"
      */
     private File srcDir;
     /**
-     * @parameter expression="${basedir}/src/main/resources" 
+     * @parameter expression="${basedir}/src/main/resources"
      */
     private File resourcesDir;
     /**
@@ -46,7 +50,6 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      * @parameter expression="${basedir}/src/main/java"
      */
     // private File targetRDir;
-
     // PROJECT PROPS
     /**
      * @parameter expression="${android.home}"
@@ -98,6 +101,22 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     /** Creates a new instance of AbstractAndroidMojo */
     public AbstractAndroidMojo() {
+        super();
+
+        if (OS_NAME.startsWith("windows")) {
+            this.getLog().info("os = WINDOWS");
+            // handler = new ScriptHandlerWindows();
+        } else {
+            this.getLog().info("os = UNIX (variant)");
+            isUnix = true;
+            handler = new ScriptHandlerUnix();
+        }
+    }
+
+    public void execute() throws MojoExecutionException, MojoFailureException {
+        if (this.getBuildDir() == null || !this.getBuildDir().exists()) {
+            this.getBuildDir().mkdirs();
+        }
     }
 
     public MavenProject getProject() {
@@ -203,7 +222,5 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
     public void setApkArtifactName(String apkArtifactName) {
         this.apkArtifactName = apkArtifactName;
     }
-
- 
 
 }
