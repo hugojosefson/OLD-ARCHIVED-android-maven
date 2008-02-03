@@ -124,7 +124,7 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
         super();
 
         if (OS_NAME.startsWith("windows")) {
-            // handler = new ScriptHandlerWindows();
+            handler = new ScriptHandlerWindows();
         } else {
             isUnix = true;
             handler = new ScriptHandlerUnix();
