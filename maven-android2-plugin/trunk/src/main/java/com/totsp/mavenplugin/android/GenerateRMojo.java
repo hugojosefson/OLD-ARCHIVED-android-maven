@@ -35,6 +35,10 @@ public class GenerateRMojo extends AbstractAndroidMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
 
+        if (this.getBuildDir() == null || !this.getBuildDir().exists()) {
+            this.getBuildDir().mkdirs();
+        }
+        
         if (!isUnix) {
             // WINDOWS
             // TODO windows
