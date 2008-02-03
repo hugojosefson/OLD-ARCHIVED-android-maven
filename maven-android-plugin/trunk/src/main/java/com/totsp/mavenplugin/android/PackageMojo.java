@@ -33,9 +33,21 @@ public class PackageMojo extends AbstractAndroidMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
         super.execute();        
         if (!isUnix) {
-            // WINDOWS
-            // TODO windows
-            throw new UnsupportedOperationException("Windows not yet supported");
+            try {
+                ScriptHandlerWindows winHandler = (ScriptHandlerWindows) handler;
+                
+                // first phase, process classes into DX
+                File commandFile = winHandler.writeDexScript(this);
+                winHandler.runScriptWindows(commandFile, this);
+                
+                // second phase, process res and assets into APK file
+                commandFile = winHandler.writePackageResScript(this);
+                winHandler.runScriptWindows(commandFile, this);
+                
+            } catch (Exception e) {
+                this.getLog().error(e);
+                throw new MojoExecutionException(e.getLocalizedMessage());
+            }
         } else {
             // UNIX
             try {
@@ -49,13 +61,18 @@ public class PackageMojo extends AbstractAndroidMojo {
                 commandFile = unixHandler.writePackageResScript(this);
                 unixHandler.runScriptUnix(commandFile, this);
 
-                // third phase, add classes.dex into APK (archive file)
-                PackageMojo.addFilesToExistingZip(new File(this.getApkArtifactName()), new File[] {this.getDexFile()});
-
             } catch (Exception e) {
                 this.getLog().error(e);
                 throw new MojoExecutionException(e.getLocalizedMessage());
             }
+            
+            // third phase, add classes.dex into APK (archive file)
+            try {
+                PackageMojo.addFilesToExistingZip(new File(this.getApkArtifactName()), new File[] {this.getDexFile()});
+            } catch (IOException e) {
+                throw new MojoExecutionException(e.getLocalizedMessage());
+            }
+            
         }
     }
 
@@ -117,18 +134,4 @@ public class PackageMojo extends AbstractAndroidMojo {
         out.close();
         tempFile.delete();
     }
-    
-    
-    // TODO use the maven packaging stuff
-    /*
-    Artifact artifact = artifactFactory.createArtifact("android", "android", androidVersion, "jar", "jar");
-    ArtifactRepositoryLayout defaultLayout = new DefaultRepositoryLayout();
-
-    File androidJar = new File(localRepository, defaultLayout.pathOf(artifact));
-    artifact.setFile(androidJar);
-    
-    project.getArtifact().setFile(outputFile);    
-    */
-
-
 }

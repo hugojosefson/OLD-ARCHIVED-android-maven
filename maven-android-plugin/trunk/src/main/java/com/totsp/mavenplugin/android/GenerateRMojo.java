@@ -21,9 +21,14 @@ public class GenerateRMojo extends AbstractAndroidMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
         super.execute();
         if (!isUnix) {
-            // WINDOWS
-            // TODO windows
-            throw new UnsupportedOperationException("Windows not yet supported");
+            try {
+                ScriptHandlerWindows winHandler = (ScriptHandlerWindows) handler;
+                File commandFile = winHandler.writeRScript(this);
+                winHandler.runScriptWindows(commandFile, this);
+            } catch (Exception e) {
+                this.getLog().error(e);
+                throw new MojoExecutionException(e.getLocalizedMessage());
+            }
         } else {
             // UNIX
             try {

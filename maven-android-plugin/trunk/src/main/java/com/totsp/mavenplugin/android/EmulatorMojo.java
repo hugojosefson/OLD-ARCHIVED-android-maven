@@ -23,13 +23,18 @@ public class EmulatorMojo extends AbstractAndroidMojo {
         super.execute();
         if (!isUnix) {
             // WINDOWS
-            // TODO windows
-            throw new UnsupportedOperationException("Windows not yet supported");
+            try {
+                ScriptHandlerWindows winHandler = (ScriptHandlerWindows) handler;
+                File commandFile = winHandler.writeInstallApkScript(this);
+                winHandler.runScriptWindows(commandFile, this);
+            } catch (Exception e) {
+                this.getLog().error(e);
+                throw new MojoExecutionException(e.getLocalizedMessage());
+            }
         } else {
             // UNIX
             try {
                 ScriptHandlerUnix unixHandler = (ScriptHandlerUnix) handler;
-
                 File commandFile = unixHandler.writeInstallApkScript(this);
                 unixHandler.runScriptUnix(commandFile, this);
             } catch (Exception e) {
