@@ -2,8 +2,9 @@ Android-Maven
 ----------------
 
 Useful M2 plugin for building Android projects and running tools (such as emulator).
-The Eclipse plugin is recommended for day-to-day dev, for now, but this can be used 
-for continuous integration builds and the like. 
+The Eclipse plugin is recommended for day-to-day dev, for now, as it is much more 
+productive than running from command line using manual tools or Maven, 
+but this can be used for continuous integration builds and the like (and for those that don't use Eclipse). 
 
 1. Gotta have Maven
 2. Edit your ~/.m2/settings.xml file so that you have an Android profile (see ../settings.xml for an example).
