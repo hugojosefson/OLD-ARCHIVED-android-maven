@@ -1,0 +1,13 @@
+Android-Maven
+----------------
+
+Useful M2 plugin for building Android projects and running tools (such as emulator).
+The Eclipse plugin is recommended for day-to-day dev, for now, but this can be used 
+for continuous integration builds and the like. 
+
+1. Gotta have Maven
+2. Edit your ~/.m2/settings.xml file so that you have an Android profile (see ../settings.xml for an example).
+3. Setup an Android project with typical Maven 2 layout (or edit configuration in pom).
+4. Include a pom, see maven-android2-sample for an example (in SVN parallel to the plugin).
+5. run "mvn clean package" to generate an R file, setup DEX file, build an APK, and run-install on emulator.
+6. Change the execution goals in the pom to adjust what steps run, or do not run, etc.

@@ -2,5 +2,7 @@
 2. Don't make the "jar", just make the apk (manipulate artifact?)
 3. Add windows support
 4. Look at multi module/project and res/source List stuff
+5. Add mojo tests
+6. Update the site style docs
 
 later: added debugging, more tool options, etc
