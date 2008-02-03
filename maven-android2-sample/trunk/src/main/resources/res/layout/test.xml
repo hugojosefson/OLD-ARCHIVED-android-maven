@@ -12,6 +12,6 @@
 		android:layout_height="wrap_content"
 		android:layout_marginTop="10px"
 		android:layout_marginBottom="10px"		 
-		android:text="This is a test" />		
+		android:text="This is a test!" />		
 		
 </RelativeLayout>
