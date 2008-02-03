@@ -45,11 +45,6 @@ public class PackageMojo extends AbstractAndroidMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
 
-        if (!this.getOutput().exists()) {
-            this.getLog().info("creating output - " + this.getOutput().getAbsolutePath());
-            this.getOutput().mkdirs();
-        }
-
         if (!isUnix) {
             // WINDOWS
             // TODO windows

@@ -5,7 +5,6 @@ import java.util.Locale;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.project.MavenProject;
-import org.apache.maven.project.MavenProjectHelper;
 
 /**
  * Properties for android-maven.
@@ -27,30 +26,32 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      */
     private MavenProject project;
     /**
-     * project-helper instance, used to make addition of resources simpler.
-     * 
-     * @component
-     */
-    private MavenProjectHelper helper;
-    /**
-     * @parameter expression="${project.build.sourceDirectory}"
+     * @parameter expression="${project.build.sourceDirectory}" 
      */
     private File srcDir;
+    /**
+     * @parameter expression="${basedir}/src/main/resources" 
+     */
+    private File resourcesDir;
     /**
      * @parameter expression="${project.build.directory}"
      */
     private File buildDir;
+
+    /**
+     * @parameter expression="${project.build.directory}/${project.build.finalName}"
+     */
+    // /private File output;
+    /**
+     * @parameter expression="${basedir}/src/main/java"
+     */
+    // private File targetRDir;
 
     // PROJECT PROPS
     /**
      * @parameter expression="${android.home}"
      */
     private File androidHome;
-    
-    /**
-     * @parameter expression="${project.build.directory}/${project.build.finalName}"
-     */
-    private File output;
 
     // TOOLS
     /**
@@ -72,18 +73,12 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      */
     private File dxTool;
     /**
-     * @parameter expression="${android.home}/android.jar"
+     * 
+     * @parameter expression="${android.home}/tools/adb"
      */
-    private File androidJar;
-
-    // TOOL OPTIONS
-    // TODO
+    private File adBTool;
 
     // INPUT/OUTPUT ASSETS
-    /**
-     * @parameter expression="${basedir}/src/main/resources"
-     */
-    private File resourcesDir;
     /**
      * @parameter expression="${basedir}/src/main/resources/res"
      */
@@ -100,19 +95,41 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      * @parameter expression="${project.build.directory}/${project.artifactId}.apk"
      */
     private String apkArtifactName;
-    /**
-     * @parameter expression="${basedir}/src/main/java"
-     */
-    private File targetRDir;
-
-    // EMULATOR OPTIONS
-    /**
-     * Delete all data on user-data disk image before starting.
-     */
-    private boolean wipeData;
 
     /** Creates a new instance of AbstractAndroidMojo */
     public AbstractAndroidMojo() {
+    }
+
+    public MavenProject getProject() {
+        return project;
+    }
+
+    public void setProject(MavenProject project) {
+        this.project = project;
+    }
+
+    public File getSrcDir() {
+        return srcDir;
+    }
+
+    public void setSrcDir(File srcDir) {
+        this.srcDir = srcDir;
+    }
+
+    public File getResourcesDir() {
+        return resourcesDir;
+    }
+
+    public void setResourcesDir(File resourcesDir) {
+        this.resourcesDir = resourcesDir;
+    }
+
+    public File getBuildDir() {
+        return buildDir;
+    }
+
+    public void setBuildDir(File buildDir) {
+        this.buildDir = buildDir;
     }
 
     public File getAndroidHome() {
@@ -147,12 +164,12 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
         this.dxTool = dxTool;
     }
 
-    public File getAndroidJar() {
-        return androidJar;
+    public File getAdBTool() {
+        return adBTool;
     }
 
-    public void setAndroidJar(File androidJar) {
-        this.androidJar = androidJar;
+    public void setAdBTool(File adBTool) {
+        this.adBTool = adBTool;
     }
 
     public File getResDir() {
@@ -171,76 +188,8 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
         this.assetDir = assetDir;
     }
 
-    public boolean isWipeData() {
-        return wipeData;
-    }
-
-    public void setWipeData(boolean wipeData) {
-        this.wipeData = wipeData;
-    }
-
-    public static String getOS_NAME() {
-        return OS_NAME;
-    }
-
-    public MavenProject getProject() {
-        return project;
-    }
-
-    public void setProject(MavenProject project) {
-        this.project = project;
-    }
-
-    public MavenProjectHelper getHelper() {
-        return helper;
-    }
-
-    public void setHelper(MavenProjectHelper helper) {
-        this.helper = helper;
-    }
-
-    public File getSrcDir() {
-        return srcDir;
-    }
-
-    public void setSrcDir(File srcDir) {
-        this.srcDir = srcDir;
-    }
-
-    public File getBuildDir() {
-        return buildDir;
-    }
-
-    public void setBuildDir(File buildDir) {
-        this.buildDir = buildDir;
-    }
-
-    public File getResourcesDir() {
-        return resourcesDir;
-    }
-
-    public void setResourcesDir(File resourcesDir) {
-        this.resourcesDir = resourcesDir;
-    }
-
-    public File getOutput() {
-        return output;
-    }
-
-    public void setOutput(File output) {
-        this.output = output;
-    }
-
-    public File getTargetRDir() {
-        return targetRDir;
-    }
-
-    public void setTargetRDir(File targetRDir) {
-        this.targetRDir = targetRDir;
-    }
-
     public File getDexFile() {
-        return this.dexFile;
+        return dexFile;
     }
 
     public void setDexFile(File dexFile) {
@@ -254,5 +203,7 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
     public void setApkArtifactName(String apkArtifactName) {
         this.apkArtifactName = apkArtifactName;
     }
+
+ 
 
 }
