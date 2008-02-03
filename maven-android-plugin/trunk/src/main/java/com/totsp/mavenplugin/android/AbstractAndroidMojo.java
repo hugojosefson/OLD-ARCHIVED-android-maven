@@ -1,12 +1,14 @@
 package com.totsp.mavenplugin.android;
 
 import java.io.File;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.project.MavenProjectHelper;
 
 /**
  * Properties for android-maven.
@@ -29,10 +31,32 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      * @readonly
      */
     private MavenProject project;
+    /** 
+     * project-helper instance, used to make addition of resources 
+     * simpler. 
+     * @component 
+     */ 
+    private MavenProjectHelper helper; 
     /**
      * @parameter expression="${project.build.sourceDirectory}"
      */
     private File srcDir;
+    /** 
+     * List of source roots containing non-test code. 
+     * @parameter default-value="${project.compileSourceRoots}" 
+     * @required 
+     * @readonly 
+     */ 
+    private List sourceRoots; 
+    /** 
+     * List of Resource objects for the current build, containing 
+     * directory, includes, and excludes. 
+     * @parameter default-value="${project.resources}" 
+     * @required 
+     * @readonly 
+     */ 
+    private List resources; 
+
     /**
      * @parameter expression="${basedir}/src/main/resources"
      */
@@ -93,10 +117,8 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
         super();
 
         if (OS_NAME.startsWith("windows")) {
-            this.getLog().info("os = WINDOWS");
             // handler = new ScriptHandlerWindows();
         } else {
-            this.getLog().info("os = UNIX (variant)");
             isUnix = true;
             handler = new ScriptHandlerUnix();
         }
@@ -218,6 +240,30 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public void setEmulTool(File emulTool) {
         this.emulTool = emulTool;
+    }
+
+    public MavenProjectHelper getHelper() {
+        return helper;
+    }
+
+    public void setHelper(MavenProjectHelper helper) {
+        this.helper = helper;
+    }
+
+    public List getSourceRoots() {
+        return sourceRoots;
+    }
+
+    public void setSourceRoots(List sourceRoots) {
+        this.sourceRoots = sourceRoots;
+    }
+
+    public List getResources() {
+        return resources;
+    }
+
+    public void setResources(List resources) {
+        this.resources = resources;
     }
 
 }

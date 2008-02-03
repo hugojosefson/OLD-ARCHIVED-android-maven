@@ -6,11 +6,10 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * @goal emulrun
- * @phase package
- * 
+ * @goal install
+ * @phase install  
  * @requiresDependencyResolution compile
- * @description Runs the Android emulator //@execute phase=package
+ * @description Runs the Android emulator and installs APK file
  * 
  * @author charlie collins
  */

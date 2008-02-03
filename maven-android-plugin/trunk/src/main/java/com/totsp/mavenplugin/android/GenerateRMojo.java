@@ -6,9 +6,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * Run the android aapt tool to generate the R resource file.
- * 
- * @goal genr
+ * @goal generate-sources
  * @phase generate-sources
  * @description Generates the Android R.java resource file
  * 

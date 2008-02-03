@@ -18,7 +18,7 @@ import org.apache.maven.plugin.MojoFailureException;
  * zip to add the dex files into the APK file.
  * 
  * @goal package
- * @phase process-classes
+ * @phase package
  * @requiresDependencyResolution compile
  * @description Package android resources into APK package.
  * 
@@ -117,5 +117,18 @@ public class PackageMojo extends AbstractAndroidMojo {
         out.close();
         tempFile.delete();
     }
+    
+    
+    // TODO use the maven packaging stuff
+    /*
+    Artifact artifact = artifactFactory.createArtifact("android", "android", androidVersion, "jar", "jar");
+    ArtifactRepositoryLayout defaultLayout = new DefaultRepositoryLayout();
+
+    File androidJar = new File(localRepository, defaultLayout.pathOf(artifact));
+    artifact.setFile(androidJar);
+    
+    project.getArtifact().setFile(outputFile);    
+    */
+
 
 }
