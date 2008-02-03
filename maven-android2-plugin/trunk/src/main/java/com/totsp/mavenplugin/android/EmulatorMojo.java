@@ -31,17 +31,8 @@ public class EmulatorMojo extends AbstractAndroidMojo {
             try {
                 ScriptHandlerUnix unixHandler = (ScriptHandlerUnix) handler;
 
-                // first phase, process classes into DX
-                File commandFile = unixHandler.writeDexScript(this);
+                File commandFile = unixHandler.writeInstallScript(this);
                 unixHandler.runScriptUnix(commandFile, this);
-
-                // second phase, process res and assets into APK file
-                commandFile = unixHandler.writePackageResScript(this);
-                unixHandler.runScriptUnix(commandFile, this);
-
-                // third phase, add classes.dex into APK (archive file)
-                PackageMojo.addFilesToExistingZip(new File(this.getApkArtifactName()), new File[] {this.getDexFile()});
-
             } catch (Exception e) {
                 this.getLog().error(e);
                 throw new MojoExecutionException(e.getLocalizedMessage());

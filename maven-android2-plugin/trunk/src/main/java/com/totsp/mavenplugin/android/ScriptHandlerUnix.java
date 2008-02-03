@@ -15,6 +15,12 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
     public ScriptHandlerUnix() {
     }
 
+
+    @SuppressWarnings("static-access")
+    public File writeInstallScript(AbstractAndroidMojo mojo) throws IOException {
+        return null;
+    }
+    
     @SuppressWarnings("static-access")
     public File writePackageResScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "packageres.sh";
