@@ -64,15 +64,13 @@ public class PackageMojo extends AbstractAndroidMojo {
             } catch (Exception e) {
                 this.getLog().error(e);
                 throw new MojoExecutionException(e.getLocalizedMessage());
-            }
-            
-            // third phase, add classes.dex into APK (archive file)
-            try {
-                PackageMojo.addFilesToExistingZip(new File(this.getApkArtifactName()), new File[] {this.getDexFile()});
-            } catch (IOException e) {
-                throw new MojoExecutionException(e.getLocalizedMessage());
-            }
-            
+            }            
+        }
+        // third phase, add classes.dex into APK (archive file)
+        try {
+            PackageMojo.addFilesToExistingZip(new File(this.getApkArtifactName()), new File[] {this.getDexFile()});
+        } catch (IOException e) {
+            throw new MojoExecutionException(e.getLocalizedMessage());
         }
     }
 
