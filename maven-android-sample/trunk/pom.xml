@@ -65,7 +65,9 @@
 				<artifactId>maven-android-plugin</artifactId>
 				<version>0.2-SNAPSHOT</version>
 				<extensions>true</extensions>
-				<configuration></configuration>
+				<configuration>
+					<wipeData>true</wipeData>
+				</configuration>
 				<!-- 			
 					<executions>
 					<execution>						
