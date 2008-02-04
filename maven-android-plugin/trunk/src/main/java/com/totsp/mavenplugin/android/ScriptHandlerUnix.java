@@ -12,31 +12,51 @@ import java.io.PrintWriter;
  */
 public class ScriptHandlerUnix extends AbstractScriptHandler {
 
+    private File sh;
+    
     public ScriptHandlerUnix() {
         super();
-    }
-
-    @SuppressWarnings("static-access")
-    public File writeInstallApkScript(AbstractAndroidMojo mojo) throws IOException {
-        String filename = "installapk.sh";
-        File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));
-        File sh = new File("/bin/bash");
+        sh = new File("/bin/bash");
         if (!sh.exists()) {
             sh = new File("/usr/bin/bash");
         }
         if (!sh.exists()) {
             sh = new File("/bin/sh");
         }
-        writer.println("#!" + sh.getAbsolutePath());
+    }
 
-        writer.print(mojo.getEmulTool().getAbsolutePath() + "&");
-        writer.println();
+    @SuppressWarnings("static-access")
+    public File writeStartEmulScript(AbstractAndroidMojo mojo) throws IOException
+    {
+        String filename = "startemul.cmd";
+        File file = new File(mojo.getBuildDir(), filename);
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
+        writer.println("#!" + sh.getAbsolutePath()); 
+        
+        writer.print(mojo.getEmulTool().getAbsolutePath()); 
+        if (mojo.isWipeData()) {
+            writer.print(" -wipe-data");
+        }        
+        writer.print(" &");
+        writer.println();        
+        writer.flush();
+        writer.close();
+        return file;
+    }
+    
+    @SuppressWarnings("static-access")
+    public File writeInstallApkScript(AbstractAndroidMojo mojo) throws IOException {
+        String filename = "installapk.sh";
+        File file = new File(mojo.getBuildDir(), filename);
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
+        writer.println("#!" + sh.getAbsolutePath());  
         
         writer.print(mojo.getAdbTool().getAbsolutePath());
+        if (mojo.isLogCat()) {
+            writer.print(" logcat");
+        }
         writer.print(" wait-for-device install");       
         writer.print(" " + mojo.getApkArtifactName());
-        
         writer.println();
 
         writer.flush();
@@ -48,14 +68,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
     public File writePackageResScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "packageres.sh";
         File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));
-        File sh = new File("/bin/bash");
-        if (!sh.exists()) {
-            sh = new File("/usr/bin/bash");
-        }
-        if (!sh.exists()) {
-            sh = new File("/bin/sh");
-        }
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
         writer.println("#!" + sh.getAbsolutePath());
 
         writer.print(mojo.getAaptTool().getAbsolutePath());
@@ -78,14 +91,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
     public File writeDexScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "dex.sh";
         File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));
-        File sh = new File("/bin/bash");
-        if (!sh.exists()) {
-            sh = new File("/usr/bin/bash");
-        }
-        if (!sh.exists()) {
-            sh = new File("/bin/sh");
-        }
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
         writer.println("#!" + sh.getAbsolutePath());
 
         writer.print(mojo.getDxTool().getAbsolutePath());
@@ -106,14 +112,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
     public File writeRScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "genr.sh";
         File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));
-        File sh = new File("/bin/bash");
-        if (!sh.exists()) {
-            sh = new File("/usr/bin/bash");
-        }
-        if (!sh.exists()) {
-            sh = new File("/bin/sh");
-        }
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
         writer.println("#!" + sh.getAbsolutePath());
 
         writer.print(mojo.getAaptTool().getAbsolutePath());

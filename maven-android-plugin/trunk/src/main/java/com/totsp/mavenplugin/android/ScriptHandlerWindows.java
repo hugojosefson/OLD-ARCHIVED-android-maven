@@ -10,37 +10,58 @@ import java.io.PrintWriter;
  * 
  * @author ccollins
  */
-public class ScriptHandlerWindows extends AbstractScriptHandler {
+public class ScriptHandlerWindows extends AbstractScriptHandler
+{
 
-    public ScriptHandlerWindows() {
+    public ScriptHandlerWindows()
+    {
         super();
     }
 
     @SuppressWarnings("static-access")
-    public File writeInstallApkScript(AbstractAndroidMojo mojo) throws IOException {
-        String filename = "installapk.cmd";
+    public File writeStartEmulScript(AbstractAndroidMojo mojo) throws IOException
+    {
+        String filename = "startemul.cmd";
         File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));        
+        PrintWriter writer = new PrintWriter(new FileWriter(file));
 
-        writer.print(mojo.getEmulTool().getAbsolutePath() + "&");
+        writer.print("start " + mojo.getEmulTool().getAbsolutePath());
+        if (mojo.isWipeData()) {
+            writer.print(" -wipe-data");
+        }
         writer.println();
         
-        writer.print(mojo.getAdbTool().getAbsolutePath());
-        writer.print(" wait-for-device install");       
+        writer.flush();
+        writer.close();
+        return file;
+    }    
+    
+    @SuppressWarnings("static-access")
+    public File writeInstallApkScript(AbstractAndroidMojo mojo) throws IOException
+    {
+        String filename = "installapk.cmd";
+        File file = new File(mojo.getBuildDir(), filename);
+        PrintWriter writer = new PrintWriter(new FileWriter(file));
+        writer.print(mojo.getAdbTool().getAbsolutePath());            
+        if (mojo.isLogCat()) {
+            writer.print(" logcat");
+        }
+        writer.print(" wait-for-device install");
         writer.print(" " + mojo.getApkArtifactName());
-        
+
         writer.println();
 
         writer.flush();
         writer.close();
         return file;
     }
-    
+
     @SuppressWarnings("static-access")
-    public File writePackageResScript(AbstractAndroidMojo mojo) throws IOException {
+    public File writePackageResScript(AbstractAndroidMojo mojo) throws IOException
+    {
         String filename = "packageres.cmd";
         File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));        
+        PrintWriter writer = new PrintWriter(new FileWriter(file));
 
         writer.print(mojo.getAaptTool().getAbsolutePath());
         writer.print(" package");
@@ -50,7 +71,7 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
         writer.print(" -A " + mojo.getAssetDir().getAbsolutePath());
         writer.print(" -I " + mojo.getAndroidHome() + File.separator + "android.jar");
         writer.print(" " + mojo.getApkArtifactName());
-        
+
         writer.println();
 
         writer.flush();
@@ -59,10 +80,11 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
     }
 
     @SuppressWarnings("static-access")
-    public File writeDexScript(AbstractAndroidMojo mojo) throws IOException {
+    public File writeDexScript(AbstractAndroidMojo mojo) throws IOException
+    {
         String filename = "dex.cmd";
         File file = new File(mojo.getBuildDir(), filename);
-        PrintWriter writer = new PrintWriter(new FileWriter(file));        
+        PrintWriter writer = new PrintWriter(new FileWriter(file));
 
         writer.print(mojo.getDxTool().getAbsolutePath());
         writer.print(" --dex");
@@ -78,11 +100,12 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
     }
 
     @SuppressWarnings("static-access")
-    public File writeRScript(AbstractAndroidMojo mojo) throws IOException {
+    public File writeRScript(AbstractAndroidMojo mojo) throws IOException
+    {
         String filename = "genr.cmd";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));
-       
+
         writer.print(mojo.getAaptTool().getAbsolutePath());
         writer.print(" compile");
         writer.print(" -m");

@@ -25,7 +25,20 @@ public class EmulatorMojo extends AbstractAndroidMojo {
             // WINDOWS
             try {
                 ScriptHandlerWindows winHandler = (ScriptHandlerWindows) handler;
-                File commandFile = winHandler.writeInstallApkScript(this);
+                
+                // start emul
+                File commandFile = winHandler.writeStartEmulScript(this);
+                winHandler.runScriptWindows(commandFile, this);
+                
+                // pause for emul to start
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    // swallow
+                }
+                
+                // install apk
+                commandFile = winHandler.writeInstallApkScript(this);
                 winHandler.runScriptWindows(commandFile, this);
             } catch (Exception e) {
                 this.getLog().error(e);
@@ -35,7 +48,20 @@ public class EmulatorMojo extends AbstractAndroidMojo {
             // UNIX
             try {
                 ScriptHandlerUnix unixHandler = (ScriptHandlerUnix) handler;
-                File commandFile = unixHandler.writeInstallApkScript(this);
+                
+                // start emul
+                File commandFile = unixHandler.writeStartEmulScript(this);
+                unixHandler.runScriptUnix(commandFile, this);
+                
+                // pause for emul to start
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    // swallow
+                }
+                
+                // install apk
+                commandFile = unixHandler.writeInstallApkScript(this);
                 unixHandler.runScriptUnix(commandFile, this);
             } catch (Exception e) {
                 this.getLog().error(e);

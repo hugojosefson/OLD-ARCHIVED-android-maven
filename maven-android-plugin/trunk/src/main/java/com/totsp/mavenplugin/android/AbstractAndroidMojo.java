@@ -65,7 +65,7 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      */
     private File srcDir;
     /**
-     * @parameter expression="${basedir}/src/main/resources"
+     * @parameter expression="${basedir}${file.separator}src${file.separator}main${file.separator}resources"
      */
     private File resourcesDir;
     /**
@@ -81,41 +81,51 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     // TOOLS
     /**
-     * @parameter expression="${android.home}/tools/aapt"
+     * @parameter expression="${android.home}${file.separator}tools${file.separator}aapt"
      */
     private File aaptTool;
     /**
-     * @parameter expression="${android.home}/tools/aidl"
+     * @parameter expression="${android.home}${file.separator}tools${file.separator}aidl"
      */
     private File aidlTool;
     /**
-     * @parameter expression="${android.home}/tools/dx"
+     * @parameter expression="${android.home}${file.separator}tools${file.separator}dx"
      */
     private File dxTool;
     /**
-     * @parameter expression="${android.home}/tools/adb"
+     * @parameter expression="${android.home}${file.separator}tools${file.separator}adb"
      */
     private File adbTool;
     /**
-     * @parameter expression="${android.home}/tools/emulator"
+     * @parameter expression="${android.home}${file.separator}tools${file.separator}emulator"
      */
     private File emulTool;
+    
+    // TOOL OPTIONS    
+    /**
+     * @parameter @parameter default-value="true"
+     */
+    private boolean logCat;
+    /**
+     * @parameter @parameter default-value="false"
+     */
+    private boolean wipeData;
 
     // INPUT/OUTPUT ASSETS
     /**
-     * @parameter expression="${basedir}/src/main/resources/res"
+     * @parameter expression="${basedir}${file.separator}src${file.separator}main${file.separator}resources${file.separator}res"
      */
     private File resDir;
     /**
-     * @parameter expression="${basedir}/src/main/resources/assets"
+     * @parameter expression="${basedir}${file.separator}src${file.separator}main${file.separator}resources${file.separator}assets"
      */
     private File assetDir;
     /**
-     * @parameter expression="${project.build.directory}/classes.dex"
+     * @parameter expression="${project.build.directory}${file.separator}classes.dex"
      */
     private File dexFile;
     /**
-     * @parameter expression="${project.build.directory}/${project.artifactId}.apk"
+     * @parameter expression="${project.build.directory}${file.separator}${project.artifactId}.apk"
      */
     private String apkArtifactName;
 
@@ -295,6 +305,26 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public void setLocalRepository(ArtifactRepository localRepository) {
         this.localRepository = localRepository;
+    }
+    
+    public boolean isWipeData()
+    {
+        return wipeData;
+    }
+    
+    public void setWipeData(boolean wipeData)
+    {
+        this.wipeData = wipeData;
+    }
+    
+    public boolean isLogCat()
+    {
+        return logCat;
+    }
+    
+    public void setLogCat(boolean logCat)
+    {
+        this.logCat = logCat;
     }
 
 }
