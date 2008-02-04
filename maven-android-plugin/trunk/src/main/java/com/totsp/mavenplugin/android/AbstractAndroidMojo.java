@@ -103,11 +103,11 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
     
     // TOOL OPTIONS    
     /**
-     * @parameter @parameter default-value="true"
+     * @parameter default-value="true"
      */
     private boolean logCat;
     /**
-     * @parameter @parameter default-value="false"
+     * @parameter default-value="false"
      */
     private boolean wipeData;
 
