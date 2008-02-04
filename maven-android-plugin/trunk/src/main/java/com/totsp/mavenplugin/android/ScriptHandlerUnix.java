@@ -51,10 +51,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         PrintWriter writer = new PrintWriter(new FileWriter(file));        
         writer.println("#!" + sh.getAbsolutePath());  
         
-        writer.print(mojo.getAdbTool().getAbsolutePath());
-        if (mojo.isLogCat()) {
-            writer.print(" logcat");
-        }
+        writer.print(mojo.getAdbTool().getAbsolutePath());       
         writer.print(" wait-for-device install");       
         writer.print(" " + mojo.getApkArtifactName());
         writer.println();

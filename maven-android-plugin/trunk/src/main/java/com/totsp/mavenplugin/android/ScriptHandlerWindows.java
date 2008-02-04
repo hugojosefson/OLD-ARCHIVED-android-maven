@@ -42,10 +42,8 @@ public class ScriptHandlerWindows extends AbstractScriptHandler
         String filename = "installapk.cmd";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));
-        writer.print(mojo.getAdbTool().getAbsolutePath());            
-        if (mojo.isLogCat()) {
-            writer.print(" logcat");
-        }
+        writer.print(mojo.getAdbTool().getAbsolutePath());
+        
         writer.print(" wait-for-device install");
         writer.print(" " + mojo.getApkArtifactName());
 
