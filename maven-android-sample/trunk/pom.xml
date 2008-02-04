@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.totsp.gwt</groupId>
 	<artifactId>maven-android-sample</artifactId>
+	<!--  May be a bug with the Eclipse plugin as to when it gens the .classpath, change the packaging to "jar" to run eclipse:eclipse, then back to apk to create Android artifacts -->
 	<packaging>apk</packaging>
 	<version>0.2</version>
 	<name>maven-android-sample</name>
