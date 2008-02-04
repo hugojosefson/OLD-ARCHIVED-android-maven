@@ -10,6 +10,9 @@
 			</implementation>
 			<configuration>
 				<phases>
+				    <validate>
+						com.totsp.android:maven-android-plugin:validate
+					</validate>
 					<process-resources>
 						org.apache.maven.plugins:maven-resources-plugin:resources
 					</process-resources>
