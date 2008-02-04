@@ -87,7 +87,7 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
         writer.print(" compile");
         writer.print(" -m");
         writer.print(" -J " + mojo.getBuildDir());
-        writer.print(" -M " + mojo.getResourcesDir().getAbsolutePath() + "/AndroidManifest.xml");
+        writer.print(" -M " + mojo.getResourcesDir().getAbsolutePath() + File.separator + "AndroidManifest.xml");
         writer.print(" -S " + mojo.getResDir().getAbsolutePath());
         writer.print(" -A " + mojo.getAssetDir().getAbsolutePath());
         writer.print(" -I " + mojo.getAndroidHome() + File.separator + "android.jar");
