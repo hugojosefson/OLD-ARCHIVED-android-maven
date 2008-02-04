@@ -6,7 +6,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * @goal generate-sources
+ * @goal genr
  * @phase generate-sources
  * @description Generates the Android R.java resource file
  * 

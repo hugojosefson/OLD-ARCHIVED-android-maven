@@ -17,7 +17,7 @@ import org.apache.maven.plugin.MojoFailureException;
  * the android appt tool to package resources and assets into an APK file, run
  * zip to add the dex files into the APK file.
  * 
- * @goal package
+ * @goal apk
  * @phase package
  * @requiresDependencyResolution compile
  * @description Package android resources into APK package.
