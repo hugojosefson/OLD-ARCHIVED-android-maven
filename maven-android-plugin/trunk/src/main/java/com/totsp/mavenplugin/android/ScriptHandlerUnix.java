@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
+ * Write scripts to execute Android tool commands on OS X and Linux.
  * 
  * @author ccollins
  */
@@ -78,7 +79,6 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         String filename = "dex.sh";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));
-        // Collection<File> classpath = mojo.buildRuntimeClasspathList();
         File sh = new File("/bin/bash");
         if (!sh.exists()) {
             sh = new File("/usr/bin/bash");
@@ -89,7 +89,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         writer.println("#!" + sh.getAbsolutePath());
 
         writer.print(mojo.getDxTool().getAbsolutePath());
-        writer.print(" -Jmx383m");
+        writer.print(" -Jmx384m");
         writer.print(" --dex");
         writer.print(" --output=" + mojo.getDexFile().getAbsolutePath());
         writer.print(" --locals=full");
@@ -120,7 +120,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         writer.print(" compile");
         writer.print(" -m");
         writer.print(" -J " + mojo.getSrcDir());
-        writer.print(" -M " + mojo.getResourcesDir().getAbsolutePath() + "/AndroidManifest.xml");
+        writer.print(" -M " + mojo.getResourcesDir().getAbsolutePath() + File.separator + "AndroidManifest.xml");
         writer.print(" -S " + mojo.getResDir().getAbsolutePath());
         writer.print(" -A " + mojo.getAssetDir().getAbsolutePath());
         writer.print(" -I " + mojo.getAndroidHome() + File.separator + "android.jar");

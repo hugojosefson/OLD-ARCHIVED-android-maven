@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
+ * Write scripts to execute Android tool commands on Windows.
  * 
  * @author ccollins
  */
@@ -44,7 +45,7 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
         writer.print(mojo.getAaptTool().getAbsolutePath());
         writer.print(" package");
         writer.print(" -f -c");
-        writer.print(" -M " + mojo.getResourcesDir().getAbsolutePath() + "/AndroidManifest.xml");
+        writer.print(" -M " + mojo.getResourcesDir().getAbsolutePath() + File.separator + "AndroidManifest.xml");
         writer.print(" -S " + mojo.getResDir().getAbsolutePath());
         writer.print(" -A " + mojo.getAssetDir().getAbsolutePath());
         writer.print(" -I " + mojo.getAndroidHome() + File.separator + "android.jar");
@@ -64,7 +65,6 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
         PrintWriter writer = new PrintWriter(new FileWriter(file));        
 
         writer.print(mojo.getDxTool().getAbsolutePath());
-        writer.print(" -Jmx383m");
         writer.print(" --dex");
         writer.print(" --output=" + mojo.getDexFile().getAbsolutePath());
         writer.print(" --locals=full");
