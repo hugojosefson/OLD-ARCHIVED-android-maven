@@ -119,7 +119,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         writer.print(mojo.getAaptTool().getAbsolutePath());
         writer.print(" compile");
         writer.print(" -m");
-        writer.print(" -J " + mojo.getBuildDir());
+        writer.print(" -J " + mojo.getSrcDir());
         writer.print(" -M " + mojo.getResourcesDir().getAbsolutePath() + "/AndroidManifest.xml");
         writer.print(" -S " + mojo.getResDir().getAbsolutePath());
         writer.print(" -A " + mojo.getAssetDir().getAbsolutePath());
