@@ -5,7 +5,7 @@
 	<groupId>com.totsp.gwt</groupId>
 	<artifactId>maven-android-sample</artifactId>
 	<packaging>apk</packaging>
-	<version>0.1</version>
+	<version>0.2</version>
 	<name>maven-android-sample</name>
 	<repositories>
 		<repository>
@@ -30,11 +30,12 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<!--  TODO get the android jar out of the pom, add it to cp with Mojos -->
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>android</artifactId>
 			<version>m3-rc37a</version>
+			<scope>system</scope>
+			<systemPath>${android.home}/android.jar</systemPath>
 		</dependency>
 	</dependencies>
 	<build>
@@ -57,26 +58,25 @@
 					<source>1.5</source>
 					<target>1.5</target>
 				</configuration>
-			</plugin>		
+			</plugin>
 			<plugin>
 				<groupId>com.totsp.android</groupId>
 				<artifactId>maven-android-plugin</artifactId>
 				<version>0.2-SNAPSHOT</version>
-				<extensions>true</extensions>				
-				<configuration>
-				</configuration>	
+				<extensions>true</extensions>
+				<configuration></configuration>
 				<!-- 			
-				<executions>
+					<executions>
 					<execution>						
-						<goals>
-							<goal>generate-sources</goal>
-							<goal>package</goal>
-							<goal>install</goal>
-						</goals>
+					<goals>
+					<goal>generate-sources</goal>
+					<goal>package</goal>
+					<goal>install</goal>
+					</goals>
 					</execution>
-				</executions>
-				-->				
-			</plugin>			
+					</executions>
+				-->
+			</plugin>
 		</plugins>
 	</build>
 </project>
