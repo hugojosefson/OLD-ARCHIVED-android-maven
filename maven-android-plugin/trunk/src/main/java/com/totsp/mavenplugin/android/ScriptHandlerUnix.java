@@ -25,7 +25,19 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         }
     }
 
-    
+    @SuppressWarnings("static-access")
+    public File writeLogCatScript(AbstractAndroidMojo mojo) throws IOException
+    {
+        String filename = "logcat.sh";
+        File file = new File(mojo.getBuildDir(), filename);
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
+        writer.println("#!" + sh.getAbsolutePath());         
+        writer.print(mojo.getAdbTool() + " logcat " + mojo.getLogTags());     
+        writer.println(); 
+        writer.flush();
+        writer.close();
+        return file;
+    }
     
     @SuppressWarnings("static-access")
     public File writeEmulStartScript(AbstractAndroidMojo mojo) throws IOException
@@ -52,7 +64,7 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         writer.print(" -netspeed " + mojo.getEmulNetSpeed());        
         if (mojo.isEmulWipeData()) {
             writer.print(" -wipe-data");
-        }        
+        }    
         writer.print(" &");        
         writer.println(); 
         writer.println("fi");        

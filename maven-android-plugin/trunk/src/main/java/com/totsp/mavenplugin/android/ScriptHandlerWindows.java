@@ -17,6 +17,19 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
     }
 
     @SuppressWarnings("static-access")
+    public File writeLogCatScript(AbstractAndroidMojo mojo) throws IOException
+    {
+        String filename = "logcat.cmd";
+        File file = new File(mojo.getBuildDir(), filename);
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
+        writer.print(mojo.getAdbTool() + " logcat " + mojo.getLogTags());     
+        writer.println(); 
+        writer.flush();
+        writer.close();
+        return file;
+    }
+    
+    @SuppressWarnings("static-access")
     public File writeEmulStartScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "startemul.cmd";
         File file = new File(mojo.getBuildDir(), filename);

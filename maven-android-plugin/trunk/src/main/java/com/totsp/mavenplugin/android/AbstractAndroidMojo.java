@@ -106,7 +106,11 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
     /**
      * @parameter default-value="true"
      */
-    private boolean logCat;    
+    private boolean logCat;
+    /**
+     * @parameter default-value="DEBUG"
+     */
+    private String logTags;
     /**
      * @parameter default-value="false"
      */
@@ -358,6 +362,14 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public void setEmulNetSpeed(String emulNetSpeed) {
         this.emulNetSpeed = emulNetSpeed;
+    }
+
+    public String getLogTags() {
+        return logTags;
+    }
+
+    public void setLogTags(String logTags) {
+        this.logTags = logTags;
     }
 
 }
