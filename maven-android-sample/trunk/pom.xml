@@ -72,9 +72,11 @@
 					<executions>
 					<execution>						
 					<goals>
-					<goal>generate-sources</goal>
-					<goal>package</goal>
-					<goal>install</goal>
+					<goal>validate</goal>
+					<goal>genr</goal>
+					<goal>apk</goal>
+					<goal>emul</goal>
+					<goal>logcat</goal>
 					</goals>
 					</execution>
 					</executions>
