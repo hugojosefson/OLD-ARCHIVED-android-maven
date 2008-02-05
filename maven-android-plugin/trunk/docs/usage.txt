@@ -1,15 +1,25 @@
 Android-Maven
 ----------------
 
-Useful M2 plugin for building Android projects and running tools (such as emulator).
-The Eclipse plugin is recommended for day-to-day dev, for now, as it is much more 
+Useful M2 plugin for building Android projects and running tools.
+The Eclipse plugin is recommended for day-to-day dev, as it is much more 
 productive than running from command line using manual tools or Maven, 
-but this can be used for continuous integration builds and the like (and for those that don't use Eclipse). 
+but this can be used for continuous integration builds and the like (and for those that just don't use Eclipse). 
 
-1. Gotta have Maven
-2. Edit your ~/.m2/settings.xml file so that you have an Android profile (see ../settings.xml for an example).
-3. Setup an Android project with typical Maven 2 layout (or edit configuration in pom).
-4. Include a pom, see maven-android2-sample for an example (in SVN parallel to the plugin), use "apk" packaging .
-5. run "mvn clean install" to generate an R file, setup DEX file, build an APK, and run-install on emulator.
-(Or separately use mvn "generate-sources" to generate R, and mvn "package" to build APK.)
+1. Gotta have Maven 2
+
+2. Edit your ~/.m2/settings.xml file so that you have an Android profile with android.home defined 
+(see ../settings.xml for an example).
+
+3. Setup an Android project with typical Maven 2 layout (to use different layout change POM).
+See maven-android-sample for an example project and example POM. 
+
+4. Include a POM, see maven-android-sample for an example (in SVN parallel to the plugin), use "apk" packaging .
+
+5. run "mvn clean install" to generate an R file, setup DEX file, build an APK, and run-install on emulator
+(will start the emulator for you if not already started, or use existing instance if already running).
+Optionally: separately use "mvn generate-sources" to generate R, and "mvn package" to build APK,
+or "mvn clean install android:logcat" to launch logcat after installing app in emulator. 
+
 6. Change the execution goals in the pom to adjust what steps run, or do not run, etc.
+Goals: validate, genr, apk, emul.
