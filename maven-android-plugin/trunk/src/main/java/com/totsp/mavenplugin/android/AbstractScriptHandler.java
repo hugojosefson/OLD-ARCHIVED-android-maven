@@ -18,15 +18,15 @@ public abstract class AbstractScriptHandler {
      */
     public void runScriptUnix(File file, AbstractMojo mojo) throws MojoFailureException {
         try {
-            
-            // chmod 
+
+            // chmod
             ProcessWatcher pw = new ProcessWatcher("chmod +x " + file.getAbsolutePath());
             pw.startProcess(System.out, System.err);
             int retVal = pw.waitFor();
             if (retVal != 0) {
                 throw new MojoFailureException("chmod execution script failed");
             }
-            
+
             // execute
             pw = new ProcessWatcher(file.getAbsolutePath().replaceAll(" ", "\\ "));
             pw.startProcess(System.out, System.err);
@@ -34,7 +34,7 @@ public abstract class AbstractScriptHandler {
             if (retVal != 0) {
                 throw new MojoFailureException("Script execution failed - " + file.getCanonicalPath());
             }
-            
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

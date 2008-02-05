@@ -25,20 +25,37 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         }
     }
 
+    
+    
     @SuppressWarnings("static-access")
-    public File writeStartEmulScript(AbstractAndroidMojo mojo) throws IOException
+    public File writeEmulStartScript(AbstractAndroidMojo mojo) throws IOException
     {
-        String filename = "startemul.cmd";
+        String filename = "startemul.sh";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));        
-        writer.println("#!" + sh.getAbsolutePath()); 
+        writer.println("#!" + sh.getAbsolutePath());     
         
-        writer.print(mojo.getEmulTool().getAbsolutePath()); 
-        if (mojo.isWipeData()) {
+        writer.println("result=`" + mojo.getAdbTool() + " get-serialno`");       
+        writer.println("if [[ $result != \"unknown\" ]]");
+        writer.println("  then");
+        writer.println("    echo \"emulator already running - using existing instance (first ID)\"");
+        writer.println("else");
+        writer.println("    echo \"starting emulator\"");
+        writer.print("    " + mojo.getEmulTool().getAbsolutePath()); 
+        if (!mojo.getEmulSkin().equalsIgnoreCase("none")) {
+            writer.print(" -skin " + mojo.getEmulSkin());
+        }
+        else {
+            writer.print(" -noskin");
+        }
+        writer.print(" -netdelay " + mojo.getEmulNetDelay());
+        writer.print(" -netspeed " + mojo.getEmulNetSpeed());        
+        if (mojo.isEmulWipeData()) {
             writer.print(" -wipe-data");
         }        
-        writer.print(" &");
-        writer.println();        
+        writer.print(" &");        
+        writer.println(); 
+        writer.println("fi");        
         writer.flush();
         writer.close();
         return file;

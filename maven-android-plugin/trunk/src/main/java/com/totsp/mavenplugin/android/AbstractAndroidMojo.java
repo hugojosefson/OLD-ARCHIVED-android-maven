@@ -1,6 +1,7 @@
 package com.totsp.mavenplugin.android;
 
 import java.io.File;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.maven.artifact.factory.ArtifactFactory;
@@ -42,20 +43,20 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
     /**
      * @parameter expression="${plugin.artifacts}"
      */
-    private java.util.List pluginArtifacts;
+    private List pluginArtifacts;
     /**
      * @parameter expression="${component.org.apache.maven.artifact.factory.ArtifactFactory}"
      * @required
      * @readonly
      */
     private ArtifactFactory artifactFactory;
-    /**    
+    /**
      * @component role="org.apache.maven.artifact.resolver.ArtifactResolver"
      * @required
      * @readonly
      */
     private ArtifactResolver artifactResolver;
-    /**     
+    /**
      * @parameter expression="${localRepository}"
      * @required
      */
@@ -100,16 +101,28 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      * @parameter expression="${android.home}${file.separator}tools${file.separator}emulator"
      */
     private File emulTool;
-    
-    // TOOL OPTIONS    
+
+    // TOOL OPTIONS
     /**
      * @parameter default-value="true"
      */
-    private boolean logCat;
+    private boolean logCat;    
     /**
      * @parameter default-value="false"
      */
-    private boolean wipeData;
+    private boolean emulWipeData;
+    /**
+     * @parameter default-value="none"
+     */
+    private String emulNetDelay;
+    /**
+     * @parameter default-value="full"
+     */
+    private String emulNetSpeed;
+    /**
+     * @parameter default-value="QVGA-P"
+     */
+    private String emulSkin;
 
     // INPUT/OUTPUT ASSETS
     /**
@@ -306,25 +319,45 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
     public void setLocalRepository(ArtifactRepository localRepository) {
         this.localRepository = localRepository;
     }
-    
-    public boolean isWipeData()
-    {
-        return wipeData;
-    }
-    
-    public void setWipeData(boolean wipeData)
-    {
-        this.wipeData = wipeData;
-    }
-    
-    public boolean isLogCat()
-    {
+
+    public boolean isLogCat() {
         return logCat;
     }
-    
-    public void setLogCat(boolean logCat)
-    {
+
+    public void setLogCat(boolean logCat) {
         this.logCat = logCat;
+    }
+
+    public boolean isEmulWipeData() {
+        return emulWipeData;
+    }
+
+    public void setEmulWipeData(boolean emulWipeData) {
+        this.emulWipeData = emulWipeData;
+    }
+
+    public String getEmulSkin() {
+        return emulSkin;
+    }
+
+    public void setEmulSkin(String emulSkin) {
+        this.emulSkin = emulSkin;
+    }
+
+    public String getEmulNetDelay() {
+        return emulNetDelay;
+    }
+
+    public void setEmulNetDelay(String emulNetDelay) {
+        this.emulNetDelay = emulNetDelay;
+    }
+
+    public String getEmulNetSpeed() {
+        return emulNetSpeed;
+    }
+
+    public void setEmulNetSpeed(String emulNetSpeed) {
+        this.emulNetSpeed = emulNetSpeed;
     }
 
 }

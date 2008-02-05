@@ -10,40 +10,38 @@ import java.io.PrintWriter;
  * 
  * @author ccollins
  */
-public class ScriptHandlerWindows extends AbstractScriptHandler
-{
+public class ScriptHandlerWindows extends AbstractScriptHandler {
 
-    public ScriptHandlerWindows()
-    {
+    public ScriptHandlerWindows() {
         super();
     }
 
     @SuppressWarnings("static-access")
-    public File writeStartEmulScript(AbstractAndroidMojo mojo) throws IOException
-    {
+    public File writeEmulStartScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "startemul.cmd";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));
 
+        // TODO check if emul already running on Windows 
+
         writer.print("start " + mojo.getEmulTool().getAbsolutePath());
-        if (mojo.isWipeData()) {
+        if (mojo.isEmulWipeData()) {
             writer.print(" -wipe-data");
         }
         writer.println();
-        
+
         writer.flush();
         writer.close();
         return file;
-    }    
-    
+    }
+
     @SuppressWarnings("static-access")
-    public File writeInstallApkScript(AbstractAndroidMojo mojo) throws IOException
-    {
+    public File writeInstallApkScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "installapk.cmd";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));
         writer.print(mojo.getAdbTool().getAbsolutePath());
-        
+
         writer.print(" wait-for-device install");
         writer.print(" " + mojo.getApkArtifactName());
 
@@ -55,8 +53,7 @@ public class ScriptHandlerWindows extends AbstractScriptHandler
     }
 
     @SuppressWarnings("static-access")
-    public File writePackageResScript(AbstractAndroidMojo mojo) throws IOException
-    {
+    public File writePackageResScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "packageres.cmd";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));
@@ -78,8 +75,7 @@ public class ScriptHandlerWindows extends AbstractScriptHandler
     }
 
     @SuppressWarnings("static-access")
-    public File writeDexScript(AbstractAndroidMojo mojo) throws IOException
-    {
+    public File writeDexScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "dex.cmd";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));
@@ -98,8 +94,7 @@ public class ScriptHandlerWindows extends AbstractScriptHandler
     }
 
     @SuppressWarnings("static-access")
-    public File writeRScript(AbstractAndroidMojo mojo) throws IOException
-    {
+    public File writeRScript(AbstractAndroidMojo mojo) throws IOException {
         String filename = "genr.cmd";
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));

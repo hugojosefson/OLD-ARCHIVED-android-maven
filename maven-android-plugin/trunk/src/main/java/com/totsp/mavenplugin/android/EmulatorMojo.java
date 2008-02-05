@@ -27,7 +27,7 @@ public class EmulatorMojo extends AbstractAndroidMojo {
                 ScriptHandlerWindows winHandler = (ScriptHandlerWindows) handler;
                 
                 // start emul
-                File commandFile = winHandler.writeStartEmulScript(this);
+                File commandFile = winHandler.writeEmulStartScript(this);
                 winHandler.runScriptWindows(commandFile, this);
                 
                 // pause for emul to start
@@ -49,8 +49,8 @@ public class EmulatorMojo extends AbstractAndroidMojo {
             try {
                 ScriptHandlerUnix unixHandler = (ScriptHandlerUnix) handler;
                 
-                // start emul
-                File commandFile = unixHandler.writeStartEmulScript(this);
+                // start emul (if not already running)
+                File commandFile = unixHandler.writeEmulStartScript(this);
                 unixHandler.runScriptUnix(commandFile, this);
                 
                 // pause for emul to start
