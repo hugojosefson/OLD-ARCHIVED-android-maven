@@ -2,15 +2,15 @@
 <settings>
 	<profiles>
 		<profile>
-			<id>android-rc37a</id>
+			<id>android-m5rc14</id>
 			<properties>
 				<android.home>
-					/opt/android_sdk_darwin_m3-rc37a
+					${env.ANDROID_HOME}
 				</android.home>
 			</properties>
 		</profile>
 	</profiles>
 	<activeProfiles>
-		<activeProfile>android-rc37a</activeProfile>
+		<activeProfile>android-m5rc14</activeProfile>
 	</activeProfiles>
 </settings>
