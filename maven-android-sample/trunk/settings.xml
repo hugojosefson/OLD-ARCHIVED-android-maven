@@ -1,0 +1,16 @@
+<!--  example Android profile, this file goes in ~/.m2/ -->
+<settings>
+	<profiles>
+		<profile>
+			<id>android-m5rc14</id>
+			<properties>
+				<android.home>
+					${env.ANDROID_HOME}
+				</android.home>
+			</properties>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>android-m5rc14</activeProfile>
+	</activeProfiles>
+</settings>

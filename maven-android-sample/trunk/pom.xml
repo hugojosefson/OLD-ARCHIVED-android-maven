@@ -34,7 +34,7 @@
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>android</artifactId>
-			<version>m3-rc37a</version>
+			<version>m5-rc14</version>
 			<scope>system</scope>
 			<systemPath>${android.home}/android.jar</systemPath>
 		</dependency>
@@ -76,7 +76,6 @@
 					<goal>genr</goal>
 					<goal>apk</goal>
 					<goal>emul</goal>
-					<goal>logcat</goal>
 					</goals>
 					</execution>
 					</executions>
