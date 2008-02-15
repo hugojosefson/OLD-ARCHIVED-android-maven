@@ -41,6 +41,9 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
         if (mojo.isEmulWipeData()) {
             writer.print(" -wipe-data");
         }
+        if (mojo.isEmulVerbose()) {
+            writer.print(" -verbose");
+        }  
         writer.println();
 
         writer.flush();

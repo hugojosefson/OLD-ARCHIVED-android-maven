@@ -100,8 +100,8 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
     /**
      * @parameter expression="${android.home}${file.separator}tools${file.separator}emulator"
      */
-    private File emulTool;
-
+    private File emulTool;    
+    
     // TOOL OPTIONS
     /**
      * @parameter default-value="true"
@@ -124,9 +124,14 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
      */
     private String emulNetSpeed;
     /**
-     * @parameter default-value="QVGA-P"
+     * @parameter default-value="HVGA-P"
      */
     private String emulSkin;
+    /**
+     * @parameter default-value="false"
+     */
+    private boolean emulVerbose;
+
 
     // INPUT/OUTPUT ASSETS
     /**
@@ -370,6 +375,14 @@ public abstract class AbstractAndroidMojo extends AbstractMojo {
 
     public void setLogTags(String logTags) {
         this.logTags = logTags;
+    }
+
+    public boolean isEmulVerbose() {
+        return emulVerbose;
+    }
+
+    public void setEmulVerbose(boolean emulVerbose) {
+        this.emulVerbose = emulVerbose;
     }
 
 }

@@ -68,22 +68,22 @@ public class PackageMojo extends AbstractAndroidMojo {
         }
         // third phase, add classes.dex into APK (archive file)
         try {
-            PackageMojo.addFilesToExistingZip(new File(this.getApkArtifactName()), new File[] {this.getDexFile()});
+            PackageMojo.addFilesToExistingZip(new File(this.getApkArtifactName()), new File[] {this.getDexFile()}, this.getBuildDir());
         } catch (IOException e) {
             throw new MojoExecutionException(e.getLocalizedMessage());
         }
     }
 
     // adapted from http://snippets.dzone.com/posts/show/3468
-    public static void addFilesToExistingZip(File zipFile, File[] files) throws IOException {
+    public static void addFilesToExistingZip(File zipFile, File[] files, File targetDir) throws IOException {
         // get a temp file
-        File tempFile = File.createTempFile(zipFile.getName(), null);
+        File tempFile = File.createTempFile(zipFile.getName(), null, targetDir);
         // delete it, otherwise you cannot rename your existing zip to it.
         tempFile.delete();
 
         boolean renameOk = zipFile.renameTo(tempFile);
         if (!renameOk) {
-            throw new RuntimeException("could not rename the file " + zipFile.getAbsolutePath() + " to "
+            throw new RuntimeException("Could not rename the file " + zipFile.getAbsolutePath() + " to "
                     + tempFile.getAbsolutePath());
         }
         byte[] buf = new byte[1024];

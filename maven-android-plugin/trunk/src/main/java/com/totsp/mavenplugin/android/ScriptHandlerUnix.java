@@ -64,7 +64,10 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         writer.print(" -netspeed " + mojo.getEmulNetSpeed());        
         if (mojo.isEmulWipeData()) {
             writer.print(" -wipe-data");
-        }    
+        }  
+        if (mojo.isEmulVerbose()) {
+            writer.print(" -verbose");
+        }  
         writer.print(" &");        
         writer.println(); 
         writer.println("fi");        
