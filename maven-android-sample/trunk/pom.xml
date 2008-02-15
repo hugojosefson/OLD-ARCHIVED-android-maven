@@ -65,15 +65,15 @@
 				<artifactId>maven-android-plugin</artifactId>
 				<version>0.2-SNAPSHOT</version>
 				<extensions>true</extensions>
-				<configuration>					
+				<configuration>
 					<emulWipeData>true</emulWipeData>
 					<emulSkin>HVGA-L</emulSkin>
 					<!-- 
-					<emulNetDelay></emulNetDelay>
-					<emulNetSpeed></emulNetSpeed>
-					<emulVerbose></emulVerbose>
-					<logCat></logCat>
-					<logTags></logTags>
+						<emulNetDelay></emulNetDelay>
+						<emulNetSpeed></emulNetSpeed>
+						<emulVerbose></emulVerbose>
+						<logCat></logCat>
+						<logTags></logTags>
 					-->
 				</configuration>
 				<!-- 			
