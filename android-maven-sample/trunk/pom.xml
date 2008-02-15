@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.totsp.gwt</groupId>
-	<artifactId>maven-android-sample</artifactId>
+	<artifactId>android-maven-sample</artifactId>
 	<!--  May be a bug with the Eclipse plugin as to when it gens the .classpath, change the packaging to "jar" to run eclipse:eclipse, then back to apk to create Android artifacts -->
 	<packaging>apk</packaging>
 	<version>0.2</version>
-	<name>maven-android-sample</name>
+	<name>android-maven-sample</name>
 	<repositories>
 		<repository>
 			<id>android-maven</id>
@@ -40,7 +40,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>maven-android-sample</finalName>
+		<finalName>android-maven-sample</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -62,7 +62,7 @@
 			</plugin>
 			<plugin>
 				<groupId>com.totsp.android</groupId>
-				<artifactId>maven-android-plugin</artifactId>
+				<artifactId>android-maven-plugin</artifactId>
 				<version>0.2-SNAPSHOT</version>
 				<extensions>true</extensions>
 				<configuration>
