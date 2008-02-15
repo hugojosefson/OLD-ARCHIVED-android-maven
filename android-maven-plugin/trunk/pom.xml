@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.totsp.android</groupId>
-	<artifactId>maven-android-plugin</artifactId>
+	<artifactId>android-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
 	<version>0.2-SNAPSHOT</version>
 	<name>Maven 2 Plugin for Android</name>
