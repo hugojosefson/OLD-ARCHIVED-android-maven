@@ -12,9 +12,9 @@ but this can be used for continuous integration builds and the like (and for tho
 (see ../settings.xml for an example).
 
 3. Setup an Android project with typical Maven 2 layout (to use different layout change POM).
-See maven-android-sample for an example project and example POM. 
+See android-maven-sample for an example project and example POM. 
 
-4. Include a POM, see maven-android-sample for an example (in SVN parallel to the plugin), use "apk" packaging .
+4. Include a POM, see android-maven-sample for an example (in SVN parallel to the plugin), use "apk" packaging .
 
 5. run "mvn clean install" to generate an R file, setup DEX file, build an APK, and run-install on emulator
 (will start the emulator for you if not already started, or use existing instance if already running).

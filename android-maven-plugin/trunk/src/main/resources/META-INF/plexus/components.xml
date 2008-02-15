@@ -11,10 +11,10 @@
 			<configuration>
 				<phases>
 				    <validate>
-						com.totsp.android:maven-android-plugin:validate
+						com.totsp.android:android-maven-plugin:validate
 					</validate>
 					<generate-sources>
-						com.totsp.android:maven-android-plugin:genr
+						com.totsp.android:android-maven-plugin:genr
 					</generate-sources>
 					<process-sources />
 					<generate-resources />
@@ -39,11 +39,11 @@
 					</test>
 					<prepare-package />
 					<package>
-						com.totsp.android:maven-android-plugin:apk
+						com.totsp.android:android-maven-plugin:apk
 					</package>
 					<verify />
 					<install>
-						com.totsp.android:maven-android-plugin:emul
+						com.totsp.android:android-maven-plugin:emul
 					</install>
 					<deploy>
 						org.apache.maven.plugins:maven-deploy-plugin:deploy
