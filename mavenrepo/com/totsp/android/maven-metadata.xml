@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+  <plugins>
+    <plugin>
+      <name>Maven 2 Plugin for Android</name>
+      <prefix>android</prefix>
+      <artifactId>maven-android-plugin</artifactId>
+    </plugin>
+  </plugins>
+</metadata>
