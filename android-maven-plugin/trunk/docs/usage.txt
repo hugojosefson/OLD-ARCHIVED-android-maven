@@ -22,4 +22,4 @@ Optionally: separately use "mvn generate-sources" to generate R, and "mvn packag
 or "mvn clean install android:logcat" to launch logcat after installing app in emulator. 
 
 6. Change the execution goals in the pom to adjust what steps run, or do not run, etc.
-Goals: validate, genr, apk, emul.
+Goals: validate, genr, aidl, apk, emul.
