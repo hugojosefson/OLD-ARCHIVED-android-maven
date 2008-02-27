@@ -110,3 +110,22 @@ Android Emulator usage:   emulator [options] [-qemu args]
   Default network speed is 'full'
   Default network latency is 'none'
 
+--------------------------------------------------------------------------------
+
+AIDL
+
+INPUT required
+usage: aidl OPTIONS INPUT [OUTPUT]
+       aidl --preprocess OUTPUT INPUT...
+
+OPTIONS:
+   -I<DIR>  search path for import statements.
+   -d<FILE> generate dependency file.
+   -p<FILE> file created by --preprocess to import.
+   -b       fail when trying to compile a parcelable.
+
+INPUT:
+   An aidl interface file.
+
+OUTPUT:
+   The generated interface files. If omitted, the input filename is used, with the .aidl extension changed to a .java extension.

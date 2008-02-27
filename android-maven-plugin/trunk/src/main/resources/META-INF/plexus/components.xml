@@ -14,7 +14,7 @@
 						com.totsp.android:android-maven-plugin:validate
 					</validate>
 					<generate-sources>
-						com.totsp.android:android-maven-plugin:genr
+						com.totsp.android:android-maven-plugin:aidl, com.totsp.android:android-maven-plugin:genr
 					</generate-sources>
 					<process-sources />
 					<generate-resources />

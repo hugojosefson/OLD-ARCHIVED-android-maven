@@ -129,5 +129,18 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
         writer.close();
         return file;
     }
+    
+    @SuppressWarnings("static-access")
+    public File writeAidlScript(AbstractAndroidMojo mojo) throws IOException {
+        String filename = "aidl.cmd";
+        File file = new File(mojo.getBuildDir(), filename);
+        PrintWriter writer = new PrintWriter(new FileWriter(file));
+
+        // TODO
+        
+        writer.flush();
+        writer.close();
+        return file;
+    }
 
 }

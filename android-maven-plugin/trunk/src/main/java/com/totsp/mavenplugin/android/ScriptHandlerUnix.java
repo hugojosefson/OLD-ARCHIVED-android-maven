@@ -158,5 +158,23 @@ public class ScriptHandlerUnix extends AbstractScriptHandler {
         writer.close();
         return file;
     }
+    
+    @SuppressWarnings("static-access")
+    public File writeAidlScript(AbstractAndroidMojo mojo) throws IOException {
+        String filename = "aidl.sh";
+        File file = new File(mojo.getBuildDir(), filename);
+        PrintWriter writer = new PrintWriter(new FileWriter(file));        
+        writer.println("#!" + sh.getAbsolutePath());
+
+        writer.println("for file in $( find " + mojo.getSrcDir() + " -type f -name *.aidl )");
+        writer.println("  do");
+        writer.println("   " + mojo.getAidlTool() + " $file");
+        writer.println("  done");
+        writer.println();
+        
+        writer.flush();
+        writer.close();
+        return file;
+    }
 
 }
