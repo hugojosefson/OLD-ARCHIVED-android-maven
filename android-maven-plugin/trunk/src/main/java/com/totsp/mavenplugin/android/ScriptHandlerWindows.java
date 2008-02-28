@@ -136,8 +136,10 @@ public class ScriptHandlerWindows extends AbstractScriptHandler {
         File file = new File(mojo.getBuildDir(), filename);
         PrintWriter writer = new PrintWriter(new FileWriter(file));
 
-        // TODO
-        
+        writer.println("@ECHO OFF");
+        writer.println("FOR /R " + mojo.getSrcDir() + " %%A IN (*.aidl) DO \"" + mojo.getAidlTool() + "\" \"%%A\"");
+        writer.println();
+        writer.println("ECHO "); // has to have another line else ERRORLEVEL is not 1?
         writer.flush();
         writer.close();
         return file;

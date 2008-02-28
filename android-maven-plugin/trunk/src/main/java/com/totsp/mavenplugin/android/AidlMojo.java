@@ -25,14 +25,10 @@ public class AidlMojo extends AbstractAndroidMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
         super.execute();
         if (!isUnix) {
-            try {
-                // TODO
-                /* 
+            try {                 
                 ScriptHandlerWindows winHandler = (ScriptHandlerWindows) handler;
                 File commandFile = winHandler.writeAidlScript(this);
-                winHandler.runScriptWindows(commandFile, this);
-                */
-                throw new MojoFailureException("aidl not yet supported on Windows");
+                winHandler.runScriptWindows(commandFile, this);                
             } catch (Exception e) {
                 this.getLog().error(e);
                 throw new MojoExecutionException(e.getLocalizedMessage());
